@@ -1,0 +1,29 @@
+# Account
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**address** | **String** | the account public key | 
+**amount** | **i32** | \\[algo\\] total number of MicroAlgos in the account | 
+**amount_without_pending_rewards** | **i32** | specifies the amount of MicroAlgos in the account, without the pending rewards. | 
+**apps_local_state** | Option<[**Vec<crate::models::ApplicationLocalState>**](ApplicationLocalState.md)> | \\[appl\\] applications local data stored in this account.  Note the raw object uses `map[int] -> AppLocalState` for this type. | [optional]
+**apps_total_schema** | Option<[**crate::models::ApplicationStateSchema**](ApplicationStateSchema.md)> |  | [optional]
+**assets** | Option<[**Vec<crate::models::AssetHolding>**](AssetHolding.md)> | \\[asset\\] assets held by this account.  Note the raw object uses `map[int] -> AssetHolding` for this type. | [optional]
+**auth_addr** | Option<**String**> | \\[spend\\] the address against which signing should be checked. If empty, the address of the current account is used. This field can be updated in any transaction by setting the RekeyTo field. | [optional]
+**closed_at_round** | Option<**i32**> | Round during which this account was most recently closed. | [optional]
+**created_apps** | Option<[**Vec<crate::models::Application>**](Application.md)> | \\[appp\\] parameters of applications created by this account including app global data.  Note: the raw account uses `map[int] -> AppParams` for this type. | [optional]
+**created_assets** | Option<[**Vec<crate::models::Asset>**](Asset.md)> | \\[apar\\] parameters of assets created by this account.  Note: the raw account uses `map[int] -> Asset` for this type. | [optional]
+**created_at_round** | Option<**i32**> | Round during which this account first appeared in a transaction. | [optional]
+**deleted** | Option<**bool**> | Whether or not this account is currently closed. | [optional]
+**participation** | Option<[**crate::models::AccountParticipation**](AccountParticipation.md)> |  | [optional]
+**pending_rewards** | **i32** | amount of MicroAlgos of pending rewards in this account. | 
+**reward_base** | Option<**i32**> | \\[ebase\\] used as part of the rewards computation. Only applicable to accounts which are participating. | [optional]
+**rewards** | **i32** | \\[ern\\] total rewards of MicroAlgos the account has received, including pending rewards. | 
+**round** | **i32** | The round for which this information is relevant. | 
+**sig_type** | Option<**String**> | Indicates what type of signature is used by this account, must be one of: * sig * msig * lsig | [optional]
+**status** | **String** | \\[onl\\] delegation status of the account's MicroAlgos * Offline - indicates that the associated account is delegated. *  Online  - indicates that the associated account used as part of the delegation pool. *   NotParticipating - indicates that the associated account is neither a delegator nor a delegate. | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
