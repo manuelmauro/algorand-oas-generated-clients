@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TransactionKeyreg {
     /// \\[nonpart\\] Mark the account as participating or non-participating.
     #[serde(rename = "non-participation", skip_serializing_if = "Option::is_none")]
@@ -20,6 +20,9 @@ pub struct TransactionKeyreg {
     /// \\[selkey\\] Public key used with the Verified Random Function (VRF) result during committee selection.
     #[serde(rename = "selection-participation-key", skip_serializing_if = "Option::is_none")]
     pub selection_participation_key: Option<String>,
+    /// \\[sprfkey\\] State proof key used in key registration transactions.
+    #[serde(rename = "state-proof-key", skip_serializing_if = "Option::is_none")]
+    pub state_proof_key: Option<String>,
     /// \\[votefst\\] First round this participation key is valid.
     #[serde(rename = "vote-first-valid", skip_serializing_if = "Option::is_none")]
     pub vote_first_valid: Option<i32>,
@@ -40,6 +43,7 @@ impl TransactionKeyreg {
         TransactionKeyreg {
             non_participation: None,
             selection_participation_key: None,
+            state_proof_key: None,
             vote_first_valid: None,
             vote_key_dilution: None,
             vote_last_valid: None,

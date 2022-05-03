@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TransactionSignature {
     #[serde(rename = "logicsig", skip_serializing_if = "Option::is_none")]
     pub logicsig: Option<Box<crate::models::TransactionSignatureLogicsig>>,

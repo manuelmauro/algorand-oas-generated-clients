@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TransactionAssetConfig {
     /// \\[xaid\\] ID of the asset being configured or empty if creating.
     #[serde(rename = "asset-id", skip_serializing_if = "Option::is_none")]

@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TransactionApplication {
     /// \\[apat\\] List of accounts in addition to the sender that may be accessed from the application's approval-program and clear-state-program.
     #[serde(rename = "accounts", skip_serializing_if = "Option::is_none")]
@@ -29,6 +29,9 @@ pub struct TransactionApplication {
     /// \\[apsu\\] Logic executed for application transactions with on-completion set to \"clear\". It can read and write global state for the application, as well as account-specific local state. Clear state programs cannot reject the transaction.
     #[serde(rename = "clear-state-program", skip_serializing_if = "Option::is_none")]
     pub clear_state_program: Option<String>,
+    /// \\[epp\\] specifies the additional app program len requested in pages.
+    #[serde(rename = "extra-program-pages", skip_serializing_if = "Option::is_none")]
+    pub extra_program_pages: Option<i32>,
     /// \\[apfa\\] Lists the applications in addition to the application-id whose global states may be accessed by this application's approval-program and clear-state-program. The access is read-only.
     #[serde(rename = "foreign-apps", skip_serializing_if = "Option::is_none")]
     pub foreign_apps: Option<Vec<i32>>,
@@ -52,6 +55,7 @@ impl TransactionApplication {
             application_id,
             approval_program: None,
             clear_state_program: None,
+            extra_program_pages: None,
             foreign_apps: None,
             foreign_assets: None,
             global_state_schema: None,

@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct StateSchema {
     /// Maximum number of TEAL byte slices that may be stored in the key/value store.
     #[serde(rename = "num-byte-slice")]

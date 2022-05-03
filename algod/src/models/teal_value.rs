@@ -12,12 +12,12 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TealValue {
     /// \\[tb\\] bytes value.
     #[serde(rename = "bytes")]
     pub bytes: String,
-    /// \\[tt\\] value type.
+    /// \\[tt\\] value type. Value `1` refers to **bytes**, value `2` refers to **uint**
     #[serde(rename = "type")]
     pub _type: i32,
     /// \\[ui\\] uint value.

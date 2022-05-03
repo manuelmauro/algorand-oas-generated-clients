@@ -4,16 +4,16 @@ All URIs are relative to *https://example.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**search_for_accounts**](SearchApi.md#search_for_accounts) | **get** /v2/accounts | 
-[**search_for_applications**](SearchApi.md#search_for_applications) | **get** /v2/applications | 
-[**search_for_assets**](SearchApi.md#search_for_assets) | **get** /v2/assets | 
-[**search_for_transactions**](SearchApi.md#search_for_transactions) | **get** /v2/transactions | 
+[**search_for_accounts**](SearchApi.md#search_for_accounts) | **GET** /v2/accounts | 
+[**search_for_applications**](SearchApi.md#search_for_applications) | **GET** /v2/applications | 
+[**search_for_assets**](SearchApi.md#search_for_assets) | **GET** /v2/assets | 
+[**search_for_transactions**](SearchApi.md#search_for_transactions) | **GET** /v2/transactions | 
 
 
 
 ## search_for_accounts
 
-> crate::models::InlineResponse200 search_for_accounts(asset_id, limit, next, currency_greater_than, include_all, currency_less_than, auth_addr, round, application_id)
+> crate::models::InlineResponse200 search_for_accounts(asset_id, limit, next, currency_greater_than, include_all, exclude, currency_less_than, auth_addr, round, application_id)
 
 
 Search for accounts.
@@ -24,10 +24,11 @@ Search for accounts.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **asset_id** | Option<**i32**> | Asset ID |  |
-**limit** | Option<**i32**> | Maximum number of results to return. |  |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
 **next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
 **currency_greater_than** | Option<**i32**> | Results should have an amount greater than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used. |  |
 **include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
+**exclude** | Option<[**Vec<String>**](String.md)> | Exclude additional items such as asset holdings, application local data stored for this account, asset parameters created by this account, and application parameters created by this account. |  |
 **currency_less_than** | Option<**i32**> | Results should have an amount less than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used. |  |
 **auth_addr** | Option<**String**> | Include accounts configured to use this spending key. |  |
 **round** | Option<**i32**> | Include results for the specified round. For performance reasons, this parameter may be disabled on some configurations. |  |
@@ -51,7 +52,7 @@ No authorization required
 
 ## search_for_applications
 
-> crate::models::InlineResponse2003 search_for_applications(application_id, include_all, limit, next)
+> crate::models::InlineResponse2004 search_for_applications(application_id, creator, include_all, limit, next)
 
 
 Search for applications
@@ -62,13 +63,14 @@ Search for applications
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **application_id** | Option<**i32**> | Application ID |  |
+**creator** | Option<**String**> | Filter just applications with the given creator address. |  |
 **include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
-**limit** | Option<**i32**> | Maximum number of results to return. |  |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
 **next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
 
 ### Return type
 
-[**crate::models::InlineResponse2003**](inline_response_200_3.md)
+[**crate::models::InlineResponse2004**](inline_response_200_4.md)
 
 ### Authorization
 
@@ -95,7 +97,7 @@ Search for assets.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
-**limit** | Option<**i32**> | Maximum number of results to return. |  |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
 **next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
 **creator** | Option<**String**> | Filter just assets with the given creator address. |  |
 **name** | Option<**String**> | Filter just assets with the given name. |  |
@@ -120,17 +122,17 @@ No authorization required
 
 ## search_for_transactions
 
-> crate::models::InlineResponse2002 search_for_transactions(limit, next, note_prefix, tx_type, sig_type, txid, round, min_round, max_round, asset_id, before_time, after_time, currency_greater_than, currency_less_than, address, address_role, exclude_close_to, rekey_to, application_id)
+> crate::models::InlineResponse2006 search_for_transactions(limit, next, note_prefix, tx_type, sig_type, txid, round, min_round, max_round, asset_id, before_time, after_time, currency_greater_than, currency_less_than, address, address_role, exclude_close_to, rekey_to, application_id)
 
 
-Search for transactions.
+Search for transactions. Transactions are returned oldest to newest unless the address parameter is used, in which case results are returned newest to oldest.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**limit** | Option<**i32**> | Maximum number of results to return. |  |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
 **next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
 **note_prefix** | Option<**String**> | Specifies a prefix which must be contained in the note field. |  |
 **tx_type** | Option<**String**> |  |  |
@@ -152,7 +154,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2002**](inline_response_200_2.md)
+[**crate::models::InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 

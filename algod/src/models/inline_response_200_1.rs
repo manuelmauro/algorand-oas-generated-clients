@@ -11,21 +11,23 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct InlineResponse2001 {
-    /// Block header data.
-    #[serde(rename = "block")]
-    pub block: serde_json::Value,
-    /// Optional certificate object. This is only included when the format is set to message pack.
-    #[serde(rename = "cert", skip_serializing_if = "Option::is_none")]
-    pub cert: Option<serde_json::Value>,
+    #[serde(rename = "asset-holding", skip_serializing_if = "Option::is_none")]
+    pub asset_holding: Option<Box<crate::models::AssetHolding>>,
+    #[serde(rename = "created-asset", skip_serializing_if = "Option::is_none")]
+    pub created_asset: Option<Box<crate::models::AssetParams>>,
+    /// The round for which this information is relevant.
+    #[serde(rename = "round")]
+    pub round: i32,
 }
 
 impl InlineResponse2001 {
-    pub fn new(block: serde_json::Value) -> InlineResponse2001 {
+    pub fn new(round: i32) -> InlineResponse2001 {
         InlineResponse2001 {
-            block,
-            cert: None,
+            asset_holding: None,
+            created_asset: None,
+            round,
         }
     }
 }

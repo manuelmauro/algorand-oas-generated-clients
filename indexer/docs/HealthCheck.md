@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **is_migrating** | **bool** |  | 
 **message** | **String** |  | 
 **round** | **i32** |  | 
+**version** | **String** | Current version. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

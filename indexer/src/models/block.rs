@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Block {
     /// \\[gh\\] hash to which this block belongs.
     #[serde(rename = "genesis-hash")]

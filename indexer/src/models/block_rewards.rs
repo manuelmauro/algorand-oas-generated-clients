@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct BlockRewards {
     /// \\[fees\\] accepts transaction fees, it can only spend to the incentive pool.
     #[serde(rename = "fee-sink")]

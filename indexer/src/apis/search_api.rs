@@ -15,43 +15,50 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `search_for_accounts`
+/// struct for typed errors of method [`search_for_accounts`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchForAccountsError {
+    Status400(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `search_for_applications`
+/// struct for typed errors of method [`search_for_applications`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchForApplicationsError {
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `search_for_assets`
+/// struct for typed errors of method [`search_for_assets`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchForAssetsError {
+    Status400(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `search_for_transactions`
+/// struct for typed errors of method [`search_for_transactions`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchForTransactionsError {
-    Status500(crate::models::ErrorResponse),
+    Status400(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Search for accounts.
-pub async fn search_for_accounts(configuration: &configuration::Configuration, asset_id: Option<i32>, limit: Option<i32>, next: Option<&str>, currency_greater_than: Option<i32>, include_all: Option<bool>, currency_less_than: Option<i32>, auth_addr: Option<&str>, round: Option<i32>, application_id: Option<i32>) -> Result<crate::models::InlineResponse200, Error<SearchForAccountsError>> {
+pub async fn search_for_accounts(configuration: &configuration::Configuration, asset_id: Option<i32>, limit: Option<i32>, next: Option<&str>, currency_greater_than: Option<i32>, include_all: Option<bool>, exclude: Option<Vec<String>>, currency_less_than: Option<i32>, auth_addr: Option<&str>, round: Option<i32>, application_id: Option<i32>) -> Result<crate::models::InlineResponse200, Error<SearchForAccountsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/accounts", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/accounts", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = asset_id {
         local_var_req_builder = local_var_req_builder.query(&[("asset-id", &local_var_str.to_string())]);
@@ -68,6 +75,12 @@ pub async fn search_for_accounts(configuration: &configuration::Configuration, a
     if let Some(ref local_var_str) = include_all {
         local_var_req_builder = local_var_req_builder.query(&[("include-all", &local_var_str.to_string())]);
     }
+    if let Some(ref local_var_str) = exclude {
+        local_var_req_builder = match "csv" {
+            "multi" => local_var_req_builder.query(&local_var_str.into_iter().map(|p| ("exclude".to_owned(), p.to_string())).collect::<Vec<(std::string::String, std::string::String)>>()),
+            _ => local_var_req_builder.query(&[("exclude", &local_var_str.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string())]),
+        };
+    }
     if let Some(ref local_var_str) = currency_less_than {
         local_var_req_builder = local_var_req_builder.query(&[("currency-less-than", &local_var_str.to_string())]);
     }
@@ -80,7 +93,7 @@ pub async fn search_for_accounts(configuration: &configuration::Configuration, a
     if let Some(ref local_var_str) = application_id {
         local_var_req_builder = local_var_req_builder.query(&[("application-id", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -100,15 +113,19 @@ pub async fn search_for_accounts(configuration: &configuration::Configuration, a
 }
 
 /// Search for applications
-pub async fn search_for_applications(configuration: &configuration::Configuration, application_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::InlineResponse2003, Error<SearchForApplicationsError>> {
+pub async fn search_for_applications(configuration: &configuration::Configuration, application_id: Option<i32>, creator: Option<&str>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::InlineResponse2004, Error<SearchForApplicationsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/applications", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/applications", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = application_id {
         local_var_req_builder = local_var_req_builder.query(&[("application-id", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = creator {
+        local_var_req_builder = local_var_req_builder.query(&[("creator", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = include_all {
         local_var_req_builder = local_var_req_builder.query(&[("include-all", &local_var_str.to_string())]);
@@ -119,7 +136,7 @@ pub async fn search_for_applications(configuration: &configuration::Configuratio
     if let Some(ref local_var_str) = next {
         local_var_req_builder = local_var_req_builder.query(&[("next", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -140,11 +157,12 @@ pub async fn search_for_applications(configuration: &configuration::Configuratio
 
 /// Search for assets.
 pub async fn search_for_assets(configuration: &configuration::Configuration, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>, creator: Option<&str>, name: Option<&str>, unit: Option<&str>, asset_id: Option<i32>) -> Result<crate::models::InlineResponse2005, Error<SearchForAssetsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/assets", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/assets", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = include_all {
         local_var_req_builder = local_var_req_builder.query(&[("include-all", &local_var_str.to_string())]);
@@ -167,7 +185,7 @@ pub async fn search_for_assets(configuration: &configuration::Configuration, inc
     if let Some(ref local_var_str) = asset_id {
         local_var_req_builder = local_var_req_builder.query(&[("asset-id", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -186,13 +204,14 @@ pub async fn search_for_assets(configuration: &configuration::Configuration, inc
     }
 }
 
-/// Search for transactions.
-pub async fn search_for_transactions(configuration: &configuration::Configuration, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, asset_id: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, address: Option<&str>, address_role: Option<&str>, exclude_close_to: Option<bool>, rekey_to: Option<bool>, application_id: Option<i32>) -> Result<crate::models::InlineResponse2002, Error<SearchForTransactionsError>> {
+/// Search for transactions. Transactions are returned oldest to newest unless the address parameter is used, in which case results are returned newest to oldest.
+pub async fn search_for_transactions(configuration: &configuration::Configuration, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, asset_id: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, address: Option<&str>, address_role: Option<&str>, exclude_close_to: Option<bool>, rekey_to: Option<bool>, application_id: Option<i32>) -> Result<crate::models::InlineResponse2006, Error<SearchForTransactionsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/transactions", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/transactions", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = limit {
         local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
@@ -251,7 +270,7 @@ pub async fn search_for_transactions(configuration: &configuration::Configuratio
     if let Some(ref local_var_str) = application_id {
         local_var_req_builder = local_var_req_builder.query(&[("application-id", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 

@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**block** | [**serde_json::Value**](.md) | Block header data. | 
-**cert** | Option<[**serde_json::Value**](.md)> | Optional certificate object. This is only included when the format is set to message pack. | [optional]
+**asset_holding** | Option<[**crate::models::AssetHolding**](AssetHolding.md)> |  | [optional]
+**created_asset** | Option<[**crate::models::AssetParams**](AssetParams.md)> |  | [optional]
+**round** | **i32** | The round for which this information is relevant. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

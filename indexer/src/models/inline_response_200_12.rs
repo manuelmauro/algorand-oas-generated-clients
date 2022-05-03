@@ -11,8 +11,8 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct InlineResponse2007 {
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+pub struct InlineResponse20012 {
     #[serde(rename = "balances")]
     pub balances: Vec<crate::models::MiniAssetHolding>,
     /// Round at which the results were computed.
@@ -23,9 +23,9 @@ pub struct InlineResponse2007 {
     pub next_token: Option<String>,
 }
 
-impl InlineResponse2007 {
-    pub fn new(balances: Vec<crate::models::MiniAssetHolding>, current_round: i32) -> InlineResponse2007 {
-        InlineResponse2007 {
+impl InlineResponse20012 {
+    pub fn new(balances: Vec<crate::models::MiniAssetHolding>, current_round: i32) -> InlineResponse20012 {
+        InlineResponse20012 {
             balances,
             current_round,
             next_token: None,

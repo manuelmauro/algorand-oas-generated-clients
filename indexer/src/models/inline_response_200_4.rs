@@ -11,20 +11,24 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct InlineResponse2004 {
-    #[serde(rename = "application", skip_serializing_if = "Option::is_none")]
-    pub application: Option<Box<crate::models::Application>>,
+    #[serde(rename = "applications")]
+    pub applications: Vec<crate::models::Application>,
     /// Round at which the results were computed.
     #[serde(rename = "current-round")]
     pub current_round: i32,
+    /// Used for pagination, when making another request provide this token with the next parameter.
+    #[serde(rename = "next-token", skip_serializing_if = "Option::is_none")]
+    pub next_token: Option<String>,
 }
 
 impl InlineResponse2004 {
-    pub fn new(current_round: i32) -> InlineResponse2004 {
+    pub fn new(applications: Vec<crate::models::Application>, current_round: i32) -> InlineResponse2004 {
         InlineResponse2004 {
-            application: None,
+            applications,
             current_round,
+            next_token: None,
         }
     }
 }

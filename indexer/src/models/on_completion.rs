@@ -41,6 +41,12 @@ impl ToString for OnCompletion {
     }
 }
 
+impl Default for OnCompletion {
+    fn default() -> OnCompletion {
+        Self::Noop
+    }
+}
+
 
 
 

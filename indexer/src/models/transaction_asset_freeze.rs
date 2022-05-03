@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TransactionAssetFreeze {
     /// \\[fadd\\] Address of the account whose asset is being frozen or thawed.
     #[serde(rename = "address")]

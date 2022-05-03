@@ -12,12 +12,15 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DryrunTxnResult {
     #[serde(rename = "app-call-messages", skip_serializing_if = "Option::is_none")]
     pub app_call_messages: Option<Vec<String>>,
     #[serde(rename = "app-call-trace", skip_serializing_if = "Option::is_none")]
     pub app_call_trace: Option<Vec<crate::models::DryrunState>>,
+    /// Execution cost of app call transaction
+    #[serde(rename = "cost", skip_serializing_if = "Option::is_none")]
+    pub cost: Option<i32>,
     /// Disassembled program line by line.
     #[serde(rename = "disassembly")]
     pub disassembly: Vec<String>,
@@ -26,10 +29,15 @@ pub struct DryrunTxnResult {
     pub global_delta: Option<Vec<crate::models::EvalDeltaKeyValue>>,
     #[serde(rename = "local-deltas", skip_serializing_if = "Option::is_none")]
     pub local_deltas: Option<Vec<crate::models::AccountStateDelta>>,
+    /// Disassembled lsig program line by line.
+    #[serde(rename = "logic-sig-disassembly", skip_serializing_if = "Option::is_none")]
+    pub logic_sig_disassembly: Option<Vec<String>>,
     #[serde(rename = "logic-sig-messages", skip_serializing_if = "Option::is_none")]
     pub logic_sig_messages: Option<Vec<String>>,
     #[serde(rename = "logic-sig-trace", skip_serializing_if = "Option::is_none")]
     pub logic_sig_trace: Option<Vec<crate::models::DryrunState>>,
+    #[serde(rename = "logs", skip_serializing_if = "Option::is_none")]
+    pub logs: Option<Vec<String>>,
 }
 
 impl DryrunTxnResult {
@@ -38,11 +46,14 @@ impl DryrunTxnResult {
         DryrunTxnResult {
             app_call_messages: None,
             app_call_trace: None,
+            cost: None,
             disassembly,
             global_delta: None,
             local_deltas: None,
+            logic_sig_disassembly: None,
             logic_sig_messages: None,
             logic_sig_trace: None,
+            logs: None,
         }
     }
 }

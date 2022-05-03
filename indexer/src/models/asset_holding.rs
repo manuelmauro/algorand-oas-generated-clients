@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AssetHolding {
     /// \\[a\\] number of units held.
     #[serde(rename = "amount")]
@@ -20,9 +20,6 @@ pub struct AssetHolding {
     /// Asset ID of the holding.
     #[serde(rename = "asset-id")]
     pub asset_id: i32,
-    /// Address that created this asset. This is the address where the parameters for this asset can be found, and also the address where unwanted asset units can be sent in the worst case.
-    #[serde(rename = "creator")]
-    pub creator: String,
     /// Whether or not the asset holding is currently deleted from its account.
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<bool>,
@@ -39,11 +36,10 @@ pub struct AssetHolding {
 
 impl AssetHolding {
     /// Describes an asset held by an account.  Definition: data/basics/userBalance.go : AssetHolding
-    pub fn new(amount: i32, asset_id: i32, creator: String, is_frozen: bool) -> AssetHolding {
+    pub fn new(amount: i32, asset_id: i32, is_frozen: bool) -> AssetHolding {
         AssetHolding {
             amount,
             asset_id,
-            creator,
             deleted: None,
             is_frozen,
             opted_in_at_round: None,

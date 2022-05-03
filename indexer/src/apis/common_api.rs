@@ -15,7 +15,7 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `make_health_check`
+/// struct for typed errors of method [`make_health_check`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum MakeHealthCheckError {
@@ -25,13 +25,14 @@ pub enum MakeHealthCheckError {
 
 
 pub async fn make_health_check(configuration: &configuration::Configuration, ) -> Result<crate::models::HealthCheck, Error<MakeHealthCheckError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/health", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/health", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 

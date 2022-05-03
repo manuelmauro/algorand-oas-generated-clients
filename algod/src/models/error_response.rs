@@ -12,10 +12,10 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ErrorResponse {
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
-    pub data: Option<String>,
+    pub data: Option<serde_json::Value>,
     #[serde(rename = "message")]
     pub message: String,
 }

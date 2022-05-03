@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct HealthCheck {
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
     pub data: Option<serde_json::Value>,
@@ -26,11 +26,14 @@ pub struct HealthCheck {
     pub message: String,
     #[serde(rename = "round")]
     pub round: i32,
+    /// Current version.
+    #[serde(rename = "version")]
+    pub version: String,
 }
 
 impl HealthCheck {
     /// A health check response.
-    pub fn new(db_available: bool, is_migrating: bool, message: String, round: i32) -> HealthCheck {
+    pub fn new(db_available: bool, is_migrating: bool, message: String, round: i32, version: String) -> HealthCheck {
         HealthCheck {
             data: None,
             db_available,
@@ -38,6 +41,7 @@ impl HealthCheck {
             is_migrating,
             message,
             round,
+            version,
         }
     }
 }

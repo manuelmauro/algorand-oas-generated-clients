@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AssetParams {
     /// \\[c\\] Address of account used to clawback holdings of this asset.  If empty, clawback is not permitted.
     #[serde(rename = "clawback", skip_serializing_if = "Option::is_none")]
@@ -35,21 +35,30 @@ pub struct AssetParams {
     /// \\[am\\] A commitment to some unspecified asset metadata. The format of this metadata is up to the application.
     #[serde(rename = "metadata-hash", skip_serializing_if = "Option::is_none")]
     pub metadata_hash: Option<String>,
-    /// \\[an\\] Name of this asset, as supplied by the creator.
+    /// \\[an\\] Name of this asset, as supplied by the creator. Included only when the asset name is composed of printable utf-8 characters.
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
+    /// Base64 encoded name of this asset, as supplied by the creator.
+    #[serde(rename = "name-b64", skip_serializing_if = "Option::is_none")]
+    pub name_b64: Option<String>,
     /// \\[r\\] Address of account holding reserve (non-minted) units of this asset.
     #[serde(rename = "reserve", skip_serializing_if = "Option::is_none")]
     pub reserve: Option<String>,
     /// \\[t\\] The total number of units of this asset.
     #[serde(rename = "total")]
     pub total: i32,
-    /// \\[un\\] Name of a unit of this asset, as supplied by the creator.
+    /// \\[un\\] Name of a unit of this asset, as supplied by the creator. Included only when the name of a unit of this asset is composed of printable utf-8 characters.
     #[serde(rename = "unit-name", skip_serializing_if = "Option::is_none")]
     pub unit_name: Option<String>,
-    /// \\[au\\] URL where more information about the asset can be retrieved.
+    /// Base64 encoded name of a unit of this asset, as supplied by the creator.
+    #[serde(rename = "unit-name-b64", skip_serializing_if = "Option::is_none")]
+    pub unit_name_b64: Option<String>,
+    /// \\[au\\] URL where more information about the asset can be retrieved. Included only when the URL is composed of printable utf-8 characters.
     #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
     pub url: Option<String>,
+    /// Base64 encoded URL where more information about the asset can be retrieved.
+    #[serde(rename = "url-b64", skip_serializing_if = "Option::is_none")]
+    pub url_b64: Option<String>,
 }
 
 impl AssetParams {
@@ -64,10 +73,13 @@ impl AssetParams {
             manager: None,
             metadata_hash: None,
             name: None,
+            name_b64: None,
             reserve: None,
             total,
             unit_name: None,
+            unit_name_b64: None,
             url: None,
+            url_b64: None,
         }
     }
 }

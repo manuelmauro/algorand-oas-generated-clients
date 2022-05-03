@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **application_id** | **i32** | \\[apid\\] ID of the application being configured or empty if creating. | 
 **approval_program** | Option<**String**> | \\[apap\\] Logic executed for every application transaction, except when on-completion is set to \"clear\". It can read and write global state for the application, as well as account-specific local state. Approval programs may reject the transaction. | [optional]
 **clear_state_program** | Option<**String**> | \\[apsu\\] Logic executed for application transactions with on-completion set to \"clear\". It can read and write global state for the application, as well as account-specific local state. Clear state programs cannot reject the transaction. | [optional]
+**extra_program_pages** | Option<**i32**> | \\[epp\\] specifies the additional app program len requested in pages. | [optional]
 **foreign_apps** | Option<**Vec<i32>**> | \\[apfa\\] Lists the applications in addition to the application-id whose global states may be accessed by this application's approval-program and clear-state-program. The access is read-only. | [optional]
 **foreign_assets** | Option<**Vec<i32>**> | \\[apas\\] lists the assets whose parameters may be accessed by this application's ApprovalProgram and ClearStateProgram. The access is read-only. | [optional]
 **global_state_schema** | Option<[**crate::models::StateSchema**](StateSchema.md)> |  | [optional]

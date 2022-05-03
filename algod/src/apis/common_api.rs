@@ -15,7 +15,7 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `get_genesis`
+/// struct for typed errors of method [`get_genesis`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGenesisError {
@@ -23,14 +23,14 @@ pub enum GetGenesisError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_version`
+/// struct for typed errors of method [`get_version`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetVersionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `health_check`
+/// struct for typed errors of method [`health_check`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum HealthCheckError {
@@ -38,7 +38,7 @@ pub enum HealthCheckError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `metrics`
+/// struct for typed errors of method [`metrics`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum MetricsError {
@@ -46,7 +46,7 @@ pub enum MetricsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `swagger_json`
+/// struct for typed errors of method [`swagger_json`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SwaggerJsonError {
@@ -57,16 +57,17 @@ pub enum SwaggerJsonError {
 
 /// Returns the entire genesis file in json.
 pub async fn get_genesis(configuration: &configuration::Configuration, ) -> Result<String, Error<GetGenesisError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/genesis", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/genesis", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -92,16 +93,17 @@ pub async fn get_genesis(configuration: &configuration::Configuration, ) -> Resu
 
 /// Retrieves the supported API versions, binary build versions, and genesis information.
 pub async fn get_version(configuration: &configuration::Configuration, ) -> Result<crate::models::Version, Error<GetVersionError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/versions", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/versions", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -126,16 +128,17 @@ pub async fn get_version(configuration: &configuration::Configuration, ) -> Resu
 }
 
 pub async fn health_check(configuration: &configuration::Configuration, ) -> Result<(), Error<HealthCheckError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/health", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/health", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -160,16 +163,17 @@ pub async fn health_check(configuration: &configuration::Configuration, ) -> Res
 }
 
 pub async fn metrics(configuration: &configuration::Configuration, ) -> Result<(), Error<MetricsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/metrics", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/metrics", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -195,16 +199,17 @@ pub async fn metrics(configuration: &configuration::Configuration, ) -> Result<(
 
 /// Returns the entire swagger spec in json.
 pub async fn swagger_json(configuration: &configuration::Configuration, ) -> Result<String, Error<SwaggerJsonError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/swagger.json", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/swagger.json", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),

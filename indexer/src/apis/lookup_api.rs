@@ -15,73 +15,217 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `lookup_account_by_id`
+/// struct for typed errors of method [`lookup_account_app_local_states`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LookupAccountAppLocalStatesError {
+    Status400(crate::models::InlineResponse400),
+    Status404(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lookup_account_assets`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LookupAccountAssetsError {
+    Status400(crate::models::InlineResponse400),
+    Status404(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lookup_account_by_id`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAccountByIdError {
+    Status400(crate::models::InlineResponse400),
+    Status404(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `lookup_account_transactions`
+/// struct for typed errors of method [`lookup_account_created_applications`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LookupAccountCreatedApplicationsError {
+    Status400(crate::models::InlineResponse400),
+    Status404(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lookup_account_created_assets`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LookupAccountCreatedAssetsError {
+    Status400(crate::models::InlineResponse400),
+    Status404(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lookup_account_transactions`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAccountTransactionsError {
+    Status400(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `lookup_application_by_id`
+/// struct for typed errors of method [`lookup_application_by_id`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupApplicationByIdError {
+    Status404(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `lookup_asset_balances`
+/// struct for typed errors of method [`lookup_application_logs_by_id`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LookupApplicationLogsByIdError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lookup_asset_balances`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAssetBalancesError {
+    Status400(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `lookup_asset_by_id`
+/// struct for typed errors of method [`lookup_asset_by_id`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAssetByIdError {
-    Status404(crate::models::ErrorResponse),
+    Status400(crate::models::InlineResponse400),
+    Status404(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `lookup_asset_transactions`
+/// struct for typed errors of method [`lookup_asset_transactions`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAssetTransactionsError {
+    Status400(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `lookup_block`
+/// struct for typed errors of method [`lookup_block`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupBlockError {
+    Status404(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `lookup_transaction`
+/// struct for typed errors of method [`lookup_transaction`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupTransactionError {
-    Status404(crate::models::ErrorResponse),
-    Status500(crate::models::ErrorResponse),
+    Status400(crate::models::InlineResponse400),
+    Status404(crate::models::InlineResponse400),
+    Status500(crate::models::InlineResponse400),
     UnknownValue(serde_json::Value),
 }
 
 
+/// Lookup an account's asset holdings, optionally for a specific ID.
+pub async fn lookup_account_app_local_states(configuration: &configuration::Configuration, account_id: &str, application_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::InlineResponse2002, Error<LookupAccountAppLocalStatesError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/accounts/{account-id}/apps-local-state", local_var_configuration.base_path, account-id=crate::apis::urlencode(account_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = application_id {
+        local_var_req_builder = local_var_req_builder.query(&[("application-id", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = include_all {
+        local_var_req_builder = local_var_req_builder.query(&[("include-all", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = limit {
+        local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = next {
+        local_var_req_builder = local_var_req_builder.query(&[("next", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<LookupAccountAppLocalStatesError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Lookup an account's asset holdings, optionally for a specific ID.
+pub async fn lookup_account_assets(configuration: &configuration::Configuration, account_id: &str, asset_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::InlineResponse2003, Error<LookupAccountAssetsError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/accounts/{account-id}/assets", local_var_configuration.base_path, account-id=crate::apis::urlencode(account_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = asset_id {
+        local_var_req_builder = local_var_req_builder.query(&[("asset-id", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = include_all {
+        local_var_req_builder = local_var_req_builder.query(&[("include-all", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = limit {
+        local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = next {
+        local_var_req_builder = local_var_req_builder.query(&[("next", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<LookupAccountAssetsError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Lookup account information.
-pub async fn lookup_account_by_id(configuration: &configuration::Configuration, account_id: &str, round: Option<i32>, include_all: Option<bool>) -> Result<crate::models::InlineResponse2001, Error<LookupAccountByIdError>> {
+pub async fn lookup_account_by_id(configuration: &configuration::Configuration, account_id: &str, round: Option<i32>, include_all: Option<bool>, exclude: Option<Vec<String>>) -> Result<crate::models::InlineResponse2001, Error<LookupAccountByIdError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/accounts/{account-id}", configuration.base_path, account-id=crate::apis::urlencode(account_id));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/accounts/{account-id}", local_var_configuration.base_path, account-id=crate::apis::urlencode(account_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = round {
         local_var_req_builder = local_var_req_builder.query(&[("round", &local_var_str.to_string())]);
@@ -89,7 +233,13 @@ pub async fn lookup_account_by_id(configuration: &configuration::Configuration, 
     if let Some(ref local_var_str) = include_all {
         local_var_req_builder = local_var_req_builder.query(&[("include-all", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_str) = exclude {
+        local_var_req_builder = match "csv" {
+            "multi" => local_var_req_builder.query(&local_var_str.into_iter().map(|p| ("exclude".to_owned(), p.to_string())).collect::<Vec<(std::string::String, std::string::String)>>()),
+            _ => local_var_req_builder.query(&[("exclude", &local_var_str.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string())]),
+        };
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -108,13 +258,94 @@ pub async fn lookup_account_by_id(configuration: &configuration::Configuration, 
     }
 }
 
-/// Lookup account transactions.
-pub async fn lookup_account_transactions(configuration: &configuration::Configuration, account_id: &str, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, asset_id: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, rekey_to: Option<bool>) -> Result<crate::models::InlineResponse2002, Error<LookupAccountTransactionsError>> {
+/// Lookup an account's created application parameters, optionally for a specific ID.
+pub async fn lookup_account_created_applications(configuration: &configuration::Configuration, account_id: &str, application_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::InlineResponse2004, Error<LookupAccountCreatedApplicationsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/accounts/{account-id}/transactions", configuration.base_path, account-id=crate::apis::urlencode(account_id));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/accounts/{account-id}/created-applications", local_var_configuration.base_path, account-id=crate::apis::urlencode(account_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = application_id {
+        local_var_req_builder = local_var_req_builder.query(&[("application-id", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = include_all {
+        local_var_req_builder = local_var_req_builder.query(&[("include-all", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = limit {
+        local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = next {
+        local_var_req_builder = local_var_req_builder.query(&[("next", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<LookupAccountCreatedApplicationsError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Lookup an account's created asset parameters, optionally for a specific ID.
+pub async fn lookup_account_created_assets(configuration: &configuration::Configuration, account_id: &str, asset_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::InlineResponse2005, Error<LookupAccountCreatedAssetsError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/accounts/{account-id}/created-assets", local_var_configuration.base_path, account-id=crate::apis::urlencode(account_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = asset_id {
+        local_var_req_builder = local_var_req_builder.query(&[("asset-id", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = include_all {
+        local_var_req_builder = local_var_req_builder.query(&[("include-all", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = limit {
+        local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = next {
+        local_var_req_builder = local_var_req_builder.query(&[("next", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<LookupAccountCreatedAssetsError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Lookup account transactions. Transactions are returned newest to oldest.
+pub async fn lookup_account_transactions(configuration: &configuration::Configuration, account_id: &str, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, asset_id: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, rekey_to: Option<bool>) -> Result<crate::models::InlineResponse2006, Error<LookupAccountTransactionsError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/accounts/{account-id}/transactions", local_var_configuration.base_path, account-id=crate::apis::urlencode(account_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = limit {
         local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
@@ -161,7 +392,7 @@ pub async fn lookup_account_transactions(configuration: &configuration::Configur
     if let Some(ref local_var_str) = rekey_to {
         local_var_req_builder = local_var_req_builder.query(&[("rekey-to", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -181,17 +412,18 @@ pub async fn lookup_account_transactions(configuration: &configuration::Configur
 }
 
 /// Lookup application.
-pub async fn lookup_application_by_id(configuration: &configuration::Configuration, application_id: i32, include_all: Option<bool>) -> Result<crate::models::InlineResponse2004, Error<LookupApplicationByIdError>> {
+pub async fn lookup_application_by_id(configuration: &configuration::Configuration, application_id: i32, include_all: Option<bool>) -> Result<crate::models::InlineResponse2008, Error<LookupApplicationByIdError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/applications/{application-id}", configuration.base_path, application-id=application_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/applications/{application-id}", local_var_configuration.base_path, application-id=application_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = include_all {
         local_var_req_builder = local_var_req_builder.query(&[("include-all", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -210,13 +442,60 @@ pub async fn lookup_application_by_id(configuration: &configuration::Configurati
     }
 }
 
+/// Lookup application logs.
+pub async fn lookup_application_logs_by_id(configuration: &configuration::Configuration, application_id: i32, limit: Option<i32>, next: Option<&str>, txid: Option<&str>, min_round: Option<i32>, max_round: Option<i32>, sender_address: Option<&str>) -> Result<crate::models::InlineResponse2009, Error<LookupApplicationLogsByIdError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/applications/{application-id}/logs", local_var_configuration.base_path, application-id=application_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = limit {
+        local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = next {
+        local_var_req_builder = local_var_req_builder.query(&[("next", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = txid {
+        local_var_req_builder = local_var_req_builder.query(&[("txid", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = min_round {
+        local_var_req_builder = local_var_req_builder.query(&[("min-round", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = max_round {
+        local_var_req_builder = local_var_req_builder.query(&[("max-round", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = sender_address {
+        local_var_req_builder = local_var_req_builder.query(&[("sender-address", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<LookupApplicationLogsByIdError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Lookup the list of accounts who hold this asset 
-pub async fn lookup_asset_balances(configuration: &configuration::Configuration, asset_id: i32, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>, round: Option<i32>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>) -> Result<crate::models::InlineResponse2007, Error<LookupAssetBalancesError>> {
+pub async fn lookup_asset_balances(configuration: &configuration::Configuration, asset_id: i32, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>) -> Result<crate::models::InlineResponse20012, Error<LookupAssetBalancesError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/assets/{asset-id}/balances", configuration.base_path, asset-id=asset_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/assets/{asset-id}/balances", local_var_configuration.base_path, asset-id=asset_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = include_all {
         local_var_req_builder = local_var_req_builder.query(&[("include-all", &local_var_str.to_string())]);
@@ -227,16 +506,13 @@ pub async fn lookup_asset_balances(configuration: &configuration::Configuration,
     if let Some(ref local_var_str) = next {
         local_var_req_builder = local_var_req_builder.query(&[("next", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = round {
-        local_var_req_builder = local_var_req_builder.query(&[("round", &local_var_str.to_string())]);
-    }
     if let Some(ref local_var_str) = currency_greater_than {
         local_var_req_builder = local_var_req_builder.query(&[("currency-greater-than", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = currency_less_than {
         local_var_req_builder = local_var_req_builder.query(&[("currency-less-than", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -256,17 +532,18 @@ pub async fn lookup_asset_balances(configuration: &configuration::Configuration,
 }
 
 /// Lookup asset information.
-pub async fn lookup_asset_by_id(configuration: &configuration::Configuration, asset_id: i32, include_all: Option<bool>) -> Result<crate::models::InlineResponse2006, Error<LookupAssetByIdError>> {
+pub async fn lookup_asset_by_id(configuration: &configuration::Configuration, asset_id: i32, include_all: Option<bool>) -> Result<crate::models::InlineResponse20011, Error<LookupAssetByIdError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/assets/{asset-id}", configuration.base_path, asset-id=asset_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/assets/{asset-id}", local_var_configuration.base_path, asset-id=asset_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = include_all {
         local_var_req_builder = local_var_req_builder.query(&[("include-all", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -285,13 +562,14 @@ pub async fn lookup_asset_by_id(configuration: &configuration::Configuration, as
     }
 }
 
-/// Lookup transactions for an asset.
-pub async fn lookup_asset_transactions(configuration: &configuration::Configuration, asset_id: i32, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, address: Option<&str>, address_role: Option<&str>, exclude_close_to: Option<bool>, rekey_to: Option<bool>) -> Result<crate::models::InlineResponse2002, Error<LookupAssetTransactionsError>> {
+/// Lookup transactions for an asset. Transactions are returned oldest to newest.
+pub async fn lookup_asset_transactions(configuration: &configuration::Configuration, asset_id: i32, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, address: Option<&str>, address_role: Option<&str>, exclude_close_to: Option<bool>, rekey_to: Option<bool>) -> Result<crate::models::InlineResponse2006, Error<LookupAssetTransactionsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/assets/{asset-id}/transactions", configuration.base_path, asset-id=asset_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/assets/{asset-id}/transactions", local_var_configuration.base_path, asset-id=asset_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = limit {
         local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
@@ -344,7 +622,7 @@ pub async fn lookup_asset_transactions(configuration: &configuration::Configurat
     if let Some(ref local_var_str) = rekey_to {
         local_var_req_builder = local_var_req_builder.query(&[("rekey-to", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -365,13 +643,14 @@ pub async fn lookup_asset_transactions(configuration: &configuration::Configurat
 
 /// Lookup block.
 pub async fn lookup_block(configuration: &configuration::Configuration, round_number: i32) -> Result<crate::models::Block, Error<LookupBlockError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/blocks/{round-number}", configuration.base_path, round-number=round_number);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/blocks/{round-number}", local_var_configuration.base_path, round-number=round_number);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -391,14 +670,15 @@ pub async fn lookup_block(configuration: &configuration::Configuration, round_nu
 }
 
 /// Lookup a single transaction.
-pub async fn lookup_transaction(configuration: &configuration::Configuration, txid: &str) -> Result<crate::models::InlineResponse2008, Error<LookupTransactionError>> {
+pub async fn lookup_transaction(configuration: &configuration::Configuration, txid: &str) -> Result<crate::models::InlineResponse20015, Error<LookupTransactionError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/transactions/{txid}", configuration.base_path, txid=crate::apis::urlencode(txid));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/transactions/{txid}", local_var_configuration.base_path, txid=crate::apis::urlencode(txid));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 

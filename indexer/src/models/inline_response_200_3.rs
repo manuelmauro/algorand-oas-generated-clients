@@ -11,10 +11,10 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct InlineResponse2003 {
-    #[serde(rename = "applications")]
-    pub applications: Vec<crate::models::Application>,
+    #[serde(rename = "assets")]
+    pub assets: Vec<crate::models::AssetHolding>,
     /// Round at which the results were computed.
     #[serde(rename = "current-round")]
     pub current_round: i32,
@@ -24,9 +24,9 @@ pub struct InlineResponse2003 {
 }
 
 impl InlineResponse2003 {
-    pub fn new(applications: Vec<crate::models::Application>, current_round: i32) -> InlineResponse2003 {
+    pub fn new(assets: Vec<crate::models::AssetHolding>, current_round: i32) -> InlineResponse2003 {
         InlineResponse2003 {
-            applications,
+            assets,
             current_round,
             next_token: None,
         }

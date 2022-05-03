@@ -11,20 +11,24 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct InlineResponse2006 {
-    #[serde(rename = "asset")]
-    pub asset: Box<crate::models::Asset>,
     /// Round at which the results were computed.
     #[serde(rename = "current-round")]
     pub current_round: i32,
+    /// Used for pagination, when making another request provide this token with the next parameter.
+    #[serde(rename = "next-token", skip_serializing_if = "Option::is_none")]
+    pub next_token: Option<String>,
+    #[serde(rename = "transactions")]
+    pub transactions: Vec<crate::models::Transaction>,
 }
 
 impl InlineResponse2006 {
-    pub fn new(asset: crate::models::Asset, current_round: i32) -> InlineResponse2006 {
+    pub fn new(current_round: i32, transactions: Vec<crate::models::Transaction>) -> InlineResponse2006 {
         InlineResponse2006 {
-            asset: Box::new(asset),
             current_round,
+            next_token: None,
+            transactions,
         }
     }
 }

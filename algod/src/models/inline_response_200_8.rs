@@ -11,21 +11,17 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct InlineResponse2008 {
-    /// base32 SHA512_256 of program bytes (Address style)
-    #[serde(rename = "hash")]
-    pub hash: String,
-    /// base64 encoded program bytes
-    #[serde(rename = "result")]
-    pub result: String,
+    /// encoding of the participation ID.
+    #[serde(rename = "partId")]
+    pub part_id: String,
 }
 
 impl InlineResponse2008 {
-    pub fn new(hash: String, result: String) -> InlineResponse2008 {
+    pub fn new(part_id: String) -> InlineResponse2008 {
         InlineResponse2008 {
-            hash,
-            result,
+            part_id,
         }
     }
 }

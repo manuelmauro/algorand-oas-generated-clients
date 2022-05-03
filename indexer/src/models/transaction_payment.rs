@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TransactionPayment {
     /// \\[amt\\] number of MicroAlgos intended to be transferred.
     #[serde(rename = "amount")]

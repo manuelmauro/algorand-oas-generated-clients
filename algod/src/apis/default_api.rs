@@ -15,7 +15,29 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `account_information`
+/// struct for typed errors of method [`account_application_information`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AccountApplicationInformationError {
+    Status400(crate::models::ErrorResponse),
+    Status401(crate::models::ErrorResponse),
+    Status500(crate::models::ErrorResponse),
+    DefaultResponse(),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`account_asset_information`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AccountAssetInformationError {
+    Status400(crate::models::ErrorResponse),
+    Status401(crate::models::ErrorResponse),
+    Status500(crate::models::ErrorResponse),
+    DefaultResponse(),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`account_information`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AccountInformationError {
@@ -26,7 +48,7 @@ pub enum AccountInformationError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_application_by_id`
+/// struct for typed errors of method [`get_application_by_id`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetApplicationByIdError {
@@ -38,7 +60,7 @@ pub enum GetApplicationByIdError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_asset_by_id`
+/// struct for typed errors of method [`get_asset_by_id`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetAssetByIdError {
@@ -50,7 +72,7 @@ pub enum GetAssetByIdError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_block`
+/// struct for typed errors of method [`get_block`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetBlockError {
@@ -62,7 +84,7 @@ pub enum GetBlockError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_pending_transactions`
+/// struct for typed errors of method [`get_pending_transactions`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetPendingTransactionsError {
@@ -73,7 +95,7 @@ pub enum GetPendingTransactionsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_pending_transactions_by_address`
+/// struct for typed errors of method [`get_pending_transactions_by_address`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetPendingTransactionsByAddressError {
@@ -85,7 +107,7 @@ pub enum GetPendingTransactionsByAddressError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_proof`
+/// struct for typed errors of method [`get_proof`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetProofError {
@@ -97,7 +119,7 @@ pub enum GetProofError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_status`
+/// struct for typed errors of method [`get_status`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetStatusError {
@@ -107,7 +129,7 @@ pub enum GetStatusError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_supply`
+/// struct for typed errors of method [`get_supply`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetSupplyError {
@@ -116,7 +138,7 @@ pub enum GetSupplyError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `pending_transaction_information`
+/// struct for typed errors of method [`pending_transaction_information`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PendingTransactionInformationError {
@@ -127,7 +149,7 @@ pub enum PendingTransactionInformationError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `raw_transaction`
+/// struct for typed errors of method [`raw_transaction`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RawTransactionError {
@@ -139,7 +161,7 @@ pub enum RawTransactionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `teal_compile`
+/// struct for typed errors of method [`teal_compile`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum TealCompileError {
@@ -151,7 +173,19 @@ pub enum TealCompileError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `teal_dryrun`
+/// struct for typed errors of method [`teal_disassemble`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum TealDisassembleError {
+    Status400(crate::models::ErrorResponse),
+    Status401(crate::models::ErrorResponse),
+    Status404(),
+    Status500(crate::models::ErrorResponse),
+    DefaultResponse(),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`teal_dryrun`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum TealDryrunError {
@@ -163,7 +197,7 @@ pub enum TealDryrunError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `transaction_params`
+/// struct for typed errors of method [`transaction_params`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum TransactionParamsError {
@@ -174,7 +208,7 @@ pub enum TransactionParamsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `wait_for_block`
+/// struct for typed errors of method [`wait_for_block`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum WaitForBlockError {
@@ -187,21 +221,103 @@ pub enum WaitForBlockError {
 }
 
 
-/// Given a specific account public key, this call returns the accounts status, balance and spendable amounts
-pub async fn account_information(configuration: &configuration::Configuration, address: &str, format: Option<&str>) -> Result<crate::models::Account, Error<AccountInformationError>> {
+/// Given a specific account public key and application ID, this call returns the account's application local state and global state (AppLocalState and AppParams, if either exists). Global state will only be returned if the provided address is the application's creator.
+pub async fn account_application_information(configuration: &configuration::Configuration, address: &str, application_id: i32, format: Option<&str>) -> Result<crate::models::InlineResponse200, Error<AccountApplicationInformationError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/accounts/{address}", configuration.base_path, address=crate::apis::urlencode(address));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/accounts/{address}/applications/{application-id}", local_var_configuration.base_path, address=crate::apis::urlencode(address), application-id=application_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = format {
         local_var_req_builder = local_var_req_builder.query(&[("format", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
+        let local_var_key = local_var_apikey.key.clone();
+        let local_var_value = match local_var_apikey.prefix {
+            Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
+            None => local_var_key,
+        };
+        local_var_req_builder = local_var_req_builder.header("X-Algo-API-Token", local_var_value);
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AccountApplicationInformationError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Given a specific account public key and asset ID, this call returns the account's asset holding and asset parameters (if either exist). Asset parameters will only be returned if the provided address is the asset's creator.
+pub async fn account_asset_information(configuration: &configuration::Configuration, address: &str, asset_id: i32, format: Option<&str>) -> Result<crate::models::InlineResponse2001, Error<AccountAssetInformationError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/accounts/{address}/assets/{asset-id}", local_var_configuration.base_path, address=crate::apis::urlencode(address), asset-id=asset_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = format {
+        local_var_req_builder = local_var_req_builder.query(&[("format", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
+        let local_var_key = local_var_apikey.key.clone();
+        let local_var_value = match local_var_apikey.prefix {
+            Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
+            None => local_var_key,
+        };
+        local_var_req_builder = local_var_req_builder.header("X-Algo-API-Token", local_var_value);
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AccountAssetInformationError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Given a specific account public key, this call returns the accounts status, balance and spendable amounts
+pub async fn account_information(configuration: &configuration::Configuration, address: &str, format: Option<&str>, exclude: Option<&str>) -> Result<crate::models::Account, Error<AccountInformationError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/accounts/{address}", local_var_configuration.base_path, address=crate::apis::urlencode(address));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = format {
+        local_var_req_builder = local_var_req_builder.query(&[("format", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = exclude {
+        local_var_req_builder = local_var_req_builder.query(&[("exclude", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -225,18 +341,19 @@ pub async fn account_information(configuration: &configuration::Configuration, a
     }
 }
 
-/// Given a application id, it returns application information including creator, approval and clear programs, global and local schemas, and global state.
+/// Given a application ID, it returns application information including creator, approval and clear programs, global and local schemas, and global state.
 pub async fn get_application_by_id(configuration: &configuration::Configuration, application_id: i32) -> Result<crate::models::Application, Error<GetApplicationByIdError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/applications/{application-id}", configuration.base_path, application-id=application_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/applications/{application-id}", local_var_configuration.base_path, application-id=application_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -260,18 +377,19 @@ pub async fn get_application_by_id(configuration: &configuration::Configuration,
     }
 }
 
-/// Given a asset id, it returns asset information including creator, name, total supply and special addresses.
+/// Given a asset ID, it returns asset information including creator, name, total supply and special addresses.
 pub async fn get_asset_by_id(configuration: &configuration::Configuration, asset_id: i32) -> Result<crate::models::Asset, Error<GetAssetByIdError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/assets/{asset-id}", configuration.base_path, asset-id=asset_id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/assets/{asset-id}", local_var_configuration.base_path, asset-id=asset_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -295,20 +413,21 @@ pub async fn get_asset_by_id(configuration: &configuration::Configuration, asset
     }
 }
 
-pub async fn get_block(configuration: &configuration::Configuration, round: i32, format: Option<&str>) -> Result<crate::models::InlineResponse2001, Error<GetBlockError>> {
+pub async fn get_block(configuration: &configuration::Configuration, round: i32, format: Option<&str>) -> Result<crate::models::InlineResponse2003, Error<GetBlockError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/blocks/{round}", configuration.base_path, round=round);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/blocks/{round}", local_var_configuration.base_path, round=round);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = format {
         local_var_req_builder = local_var_req_builder.query(&[("format", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -333,12 +452,13 @@ pub async fn get_block(configuration: &configuration::Configuration, round: i32,
 }
 
 /// Get the list of pending transactions, sorted by priority, in decreasing order, truncated at the end at MAX. If MAX = 0, returns all pending transactions. 
-pub async fn get_pending_transactions(configuration: &configuration::Configuration, max: Option<i32>, format: Option<&str>) -> Result<crate::models::InlineResponse200, Error<GetPendingTransactionsError>> {
+pub async fn get_pending_transactions(configuration: &configuration::Configuration, max: Option<i32>, format: Option<&str>) -> Result<crate::models::InlineResponse2002, Error<GetPendingTransactionsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/transactions/pending", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/transactions/pending", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = max {
         local_var_req_builder = local_var_req_builder.query(&[("max", &local_var_str.to_string())]);
@@ -346,10 +466,10 @@ pub async fn get_pending_transactions(configuration: &configuration::Configurati
     if let Some(ref local_var_str) = format {
         local_var_req_builder = local_var_req_builder.query(&[("format", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -374,12 +494,13 @@ pub async fn get_pending_transactions(configuration: &configuration::Configurati
 }
 
 /// Get the list of pending transactions by address, sorted by priority, in decreasing order, truncated at the end at MAX. If MAX = 0, returns all pending transactions. 
-pub async fn get_pending_transactions_by_address(configuration: &configuration::Configuration, address: &str, max: Option<i32>, format: Option<&str>) -> Result<crate::models::InlineResponse200, Error<GetPendingTransactionsByAddressError>> {
+pub async fn get_pending_transactions_by_address(configuration: &configuration::Configuration, address: &str, max: Option<i32>, format: Option<&str>) -> Result<crate::models::InlineResponse2002, Error<GetPendingTransactionsByAddressError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/accounts/{address}/transactions/pending", configuration.base_path, address=crate::apis::urlencode(address));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/accounts/{address}/transactions/pending", local_var_configuration.base_path, address=crate::apis::urlencode(address));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = max {
         local_var_req_builder = local_var_req_builder.query(&[("max", &local_var_str.to_string())]);
@@ -387,10 +508,10 @@ pub async fn get_pending_transactions_by_address(configuration: &configuration::
     if let Some(ref local_var_str) = format {
         local_var_req_builder = local_var_req_builder.query(&[("format", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -414,20 +535,21 @@ pub async fn get_pending_transactions_by_address(configuration: &configuration::
     }
 }
 
-pub async fn get_proof(configuration: &configuration::Configuration, round: i32, txid: &str, format: Option<&str>) -> Result<crate::models::InlineResponse2002, Error<GetProofError>> {
+pub async fn get_proof(configuration: &configuration::Configuration, round: i32, txid: &str, format: Option<&str>) -> Result<crate::models::InlineResponse2004, Error<GetProofError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/blocks/{round}/transactions/{txid}/proof", configuration.base_path, round=round, txid=crate::apis::urlencode(txid));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/blocks/{round}/transactions/{txid}/proof", local_var_configuration.base_path, round=round, txid=crate::apis::urlencode(txid));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = format {
         local_var_req_builder = local_var_req_builder.query(&[("format", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -451,17 +573,18 @@ pub async fn get_proof(configuration: &configuration::Configuration, round: i32,
     }
 }
 
-pub async fn get_status(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse2007, Error<GetStatusError>> {
+pub async fn get_status(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse2009, Error<GetStatusError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/status", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/status", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -485,17 +608,18 @@ pub async fn get_status(configuration: &configuration::Configuration, ) -> Resul
     }
 }
 
-pub async fn get_supply(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse2005, Error<GetSupplyError>> {
+pub async fn get_supply(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse2007, Error<GetSupplyError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/ledger/supply", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/ledger/supply", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -519,21 +643,22 @@ pub async fn get_supply(configuration: &configuration::Configuration, ) -> Resul
     }
 }
 
-/// Given a transaction id of a recently submitted transaction, it returns information about it.  There are several cases when this might succeed: - transaction committed (committed round > 0) - transaction still in the pool (committed round = 0, pool error = \"\") - transaction removed from pool due to error (committed round = 0, pool error != \"\") Or the transaction may have happened sufficiently long ago that the node no longer remembers it, and this will return an error. 
-pub async fn pending_transaction_information(configuration: &configuration::Configuration, txid: &str, format: Option<&str>) -> Result<crate::models::InlineResponse20011, Error<PendingTransactionInformationError>> {
+/// Given a transaction ID of a recently submitted transaction, it returns information about it.  There are several cases when this might succeed: - transaction committed (committed round > 0) - transaction still in the pool (committed round = 0, pool error = \"\") - transaction removed from pool due to error (committed round = 0, pool error != \"\") Or the transaction may have happened sufficiently long ago that the node no longer remembers it, and this will return an error. 
+pub async fn pending_transaction_information(configuration: &configuration::Configuration, txid: &str, format: Option<&str>) -> Result<crate::models::PendingTransactionResponse, Error<PendingTransactionInformationError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/transactions/pending/{txid}", configuration.base_path, txid=crate::apis::urlencode(txid));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/transactions/pending/{txid}", local_var_configuration.base_path, txid=crate::apis::urlencode(txid));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = format {
         local_var_req_builder = local_var_req_builder.query(&[("format", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -557,17 +682,18 @@ pub async fn pending_transaction_information(configuration: &configuration::Conf
     }
 }
 
-pub async fn raw_transaction(configuration: &configuration::Configuration, rawtxn: std::path::PathBuf) -> Result<crate::models::InlineResponse2006, Error<RawTransactionError>> {
+pub async fn raw_transaction(configuration: &configuration::Configuration, rawtxn: std::path::PathBuf) -> Result<crate::models::InlineResponse20014, Error<RawTransactionError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/transactions", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/transactions", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -592,18 +718,19 @@ pub async fn raw_transaction(configuration: &configuration::Configuration, rawtx
     }
 }
 
-/// Given TEAL source code in plain text, return base64 encoded program bytes and base32 SHA512_256 hash of program bytes (Address style). This endpoint is only enabled when a node's configureation file sets EnableDeveloperAPI to true.
-pub async fn teal_compile(configuration: &configuration::Configuration, source: std::path::PathBuf) -> Result<crate::models::InlineResponse2008, Error<TealCompileError>> {
+/// Given TEAL source code in plain text, return base64 encoded program bytes and base32 SHA512_256 hash of program bytes (Address style). This endpoint is only enabled when a node's configuration file sets EnableDeveloperAPI to true.
+pub async fn teal_compile(configuration: &configuration::Configuration, source: std::path::PathBuf) -> Result<crate::models::InlineResponse20011, Error<TealCompileError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/teal/compile", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/teal/compile", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -628,18 +755,56 @@ pub async fn teal_compile(configuration: &configuration::Configuration, source: 
     }
 }
 
-/// Executes TEAL program(s) in context and returns debugging information about the execution. This endpoint is only enabled when a node's configureation file sets EnableDeveloperAPI to true.
-pub async fn teal_dryrun(configuration: &configuration::Configuration, request: Option<crate::models::DryrunRequest>) -> Result<crate::models::InlineResponse2009, Error<TealDryrunError>> {
+/// Given the base64 encoded program bytes, return the TEAL source code in plain text. This endpoint is only enabled when a node's configuration file sets EnableDeveloperAPI to true.
+pub async fn teal_disassemble(configuration: &configuration::Configuration, source: String) -> Result<crate::models::InlineResponse20012, Error<TealDisassembleError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/teal/dryrun", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/teal/disassemble", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
+        let local_var_key = local_var_apikey.key.clone();
+        let local_var_value = match local_var_apikey.prefix {
+            Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
+            None => local_var_key,
+        };
+        local_var_req_builder = local_var_req_builder.header("X-Algo-API-Token", local_var_value);
+    };
+    local_var_req_builder = local_var_req_builder.json(&source);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<TealDisassembleError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Executes TEAL program(s) in context and returns debugging information about the execution. This endpoint is only enabled when a node's configuration file sets EnableDeveloperAPI to true.
+pub async fn teal_dryrun(configuration: &configuration::Configuration, request: Option<crate::models::DryrunRequest>) -> Result<crate::models::InlineResponse20013, Error<TealDryrunError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/teal/dryrun", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -664,17 +829,18 @@ pub async fn teal_dryrun(configuration: &configuration::Configuration, request: 
     }
 }
 
-pub async fn transaction_params(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse20010, Error<TransactionParamsError>> {
+pub async fn transaction_params(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse20015, Error<TransactionParamsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/transactions/params", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/transactions/params", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),
@@ -699,17 +865,18 @@ pub async fn transaction_params(configuration: &configuration::Configuration, ) 
 }
 
 /// Waits for a block to appear after round {round} and returns the node's status at the time.
-pub async fn wait_for_block(configuration: &configuration::Configuration, round: i32) -> Result<crate::models::InlineResponse2007, Error<WaitForBlockError>> {
+pub async fn wait_for_block(configuration: &configuration::Configuration, round: i32) -> Result<crate::models::InlineResponse2009, Error<WaitForBlockError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/status/wait-for-block-after/{round}", configuration.base_path, round=round);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/v2/status/wait-for-block-after/{round}", local_var_configuration.base_path, round=round);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_apikey) = configuration.api_key {
+    if let Some(ref local_var_apikey) = local_var_configuration.api_key {
         let local_var_key = local_var_apikey.key.clone();
         let local_var_value = match local_var_apikey.prefix {
             Some(ref local_var_prefix) => format!("{} {}", local_var_prefix, local_var_key),

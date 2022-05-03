@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ApplicationStateSchema {
     /// \\[nbs\\] num of byte slices.
     #[serde(rename = "num-byte-slice")]

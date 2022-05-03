@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Account {
     /// the account public key
     #[serde(rename = "address")]
@@ -26,6 +26,9 @@ pub struct Account {
     /// \\[appl\\] applications local data stored in this account.  Note the raw object uses `map[int] -> AppLocalState` for this type.
     #[serde(rename = "apps-local-state", skip_serializing_if = "Option::is_none")]
     pub apps_local_state: Option<Vec<crate::models::ApplicationLocalState>>,
+    /// \\[teap\\] the sum of all extra application program pages for this account.
+    #[serde(rename = "apps-total-extra-pages", skip_serializing_if = "Option::is_none")]
+    pub apps_total_extra_pages: Option<i32>,
     #[serde(rename = "apps-total-schema", skip_serializing_if = "Option::is_none")]
     pub apps_total_schema: Option<Box<crate::models::ApplicationStateSchema>>,
     /// \\[asset\\] assets held by this account.  Note the raw object uses `map[int] -> AssetHolding` for this type.
@@ -40,6 +43,9 @@ pub struct Account {
     /// \\[apar\\] parameters of assets created by this account.  Note: the raw account uses `map[int] -> Asset` for this type.
     #[serde(rename = "created-assets", skip_serializing_if = "Option::is_none")]
     pub created_assets: Option<Vec<crate::models::Asset>>,
+    /// MicroAlgo balance required by the account.  The requirement grows based on asset and application usage.
+    #[serde(rename = "min-balance")]
+    pub min_balance: i32,
     #[serde(rename = "participation", skip_serializing_if = "Option::is_none")]
     pub participation: Option<Box<crate::models::AccountParticipation>>,
     /// amount of MicroAlgos of pending rewards in this account.
@@ -60,21 +66,35 @@ pub struct Account {
     /// \\[onl\\] delegation status of the account's MicroAlgos * Offline - indicates that the associated account is delegated. *  Online  - indicates that the associated account used as part of the delegation pool. *   NotParticipating - indicates that the associated account is neither a delegator nor a delegate.
     #[serde(rename = "status")]
     pub status: String,
+    /// The count of all applications that have been opted in, equivalent to the count of application local data (AppLocalState objects) stored in this account.
+    #[serde(rename = "total-apps-opted-in")]
+    pub total_apps_opted_in: i32,
+    /// The count of all assets that have been opted in, equivalent to the count of AssetHolding objects held by this account.
+    #[serde(rename = "total-assets-opted-in")]
+    pub total_assets_opted_in: i32,
+    /// The count of all apps (AppParams objects) created by this account.
+    #[serde(rename = "total-created-apps")]
+    pub total_created_apps: i32,
+    /// The count of all assets (AssetParams objects) created by this account.
+    #[serde(rename = "total-created-assets")]
+    pub total_created_assets: i32,
 }
 
 impl Account {
     /// Account information at a given round.  Definition: data/basics/userBalance.go : AccountData 
-    pub fn new(address: String, amount: i32, amount_without_pending_rewards: i32, pending_rewards: i32, rewards: i32, round: i32, status: String) -> Account {
+    pub fn new(address: String, amount: i32, amount_without_pending_rewards: i32, min_balance: i32, pending_rewards: i32, rewards: i32, round: i32, status: String, total_apps_opted_in: i32, total_assets_opted_in: i32, total_created_apps: i32, total_created_assets: i32) -> Account {
         Account {
             address,
             amount,
             amount_without_pending_rewards,
             apps_local_state: None,
+            apps_total_extra_pages: None,
             apps_total_schema: None,
             assets: None,
             auth_addr: None,
             created_apps: None,
             created_assets: None,
+            min_balance,
             participation: None,
             pending_rewards,
             reward_base: None,
@@ -82,6 +102,10 @@ impl Account {
             round,
             sig_type: None,
             status,
+            total_apps_opted_in,
+            total_assets_opted_in,
+            total_created_apps,
+            total_created_assets,
         }
     }
 }
@@ -95,5 +119,11 @@ pub enum SigType {
     Msig,
     #[serde(rename = "lsig")]
     Lsig,
+}
+
+impl Default for SigType {
+    fn default() -> SigType {
+        Self::Sig
+    }
 }
 

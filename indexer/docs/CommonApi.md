@@ -4,7 +4,7 @@ All URIs are relative to *https://example.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**make_health_check**](CommonApi.md#make_health_check) | **get** /health | Returns 200 if healthy.
+[**make_health_check**](CommonApi.md#make_health_check) | **GET** /health | Returns 200 if healthy.
 
 
 

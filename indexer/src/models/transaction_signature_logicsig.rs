@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TransactionSignatureLogicsig {
     /// \\[arg\\] Logic arguments, base64 encoded.
     #[serde(rename = "args", skip_serializing_if = "Option::is_none")]

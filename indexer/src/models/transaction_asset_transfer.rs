@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct TransactionAssetTransfer {
     /// \\[aamt\\] Amount of asset to transfer. A zero amount transferred to self allocates that asset in the account's Assets map.
     #[serde(rename = "amount")]

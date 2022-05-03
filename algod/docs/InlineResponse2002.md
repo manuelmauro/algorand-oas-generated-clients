@@ -4,9 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**idx** | **i32** | Index of the transaction in the block's payset. | 
-**proof** | **String** | Merkle proof of transaction membership. | 
-**stibhash** | **String** | Hash of SignedTxnInBlock for verifying proof. | 
+**top_transactions** | [**Vec<serde_json::Value>**](serde_json::Value.md) | An array of signed transaction objects. | 
+**total_transactions** | **i32** | Total number of transactions in the pool. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

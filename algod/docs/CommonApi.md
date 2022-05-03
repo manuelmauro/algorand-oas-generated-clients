@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_genesis**](CommonApi.md#get_genesis) | **get** /genesis | Gets the genesis information.
-[**get_version**](CommonApi.md#get_version) | **get** /versions | 
-[**health_check**](CommonApi.md#health_check) | **get** /health | Returns OK if healthy.
-[**metrics**](CommonApi.md#metrics) | **get** /metrics | Return metrics about algod functioning.
-[**swagger_json**](CommonApi.md#swagger_json) | **get** /swagger.json | Gets the current swagger spec.
+[**get_genesis**](CommonApi.md#get_genesis) | **GET** /genesis | Gets the genesis information.
+[**get_version**](CommonApi.md#get_version) | **GET** /versions | 
+[**health_check**](CommonApi.md#health_check) | **GET** /health | Returns OK if healthy.
+[**metrics**](CommonApi.md#metrics) | **GET** /metrics | Return metrics about algod functioning.
+[**swagger_json**](CommonApi.md#swagger_json) | **GET** /swagger.json | Gets the current swagger spec.
 
 
 

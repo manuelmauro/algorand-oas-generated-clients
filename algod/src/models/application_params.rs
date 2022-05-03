@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ApplicationParams {
     /// \\[approv\\] approval program.
     #[serde(rename = "approval-program")]
@@ -23,6 +23,9 @@ pub struct ApplicationParams {
     /// The address that created this application. This is the address where the parameters and global state for this application can be found.
     #[serde(rename = "creator")]
     pub creator: String,
+    /// \\[epp\\] the amount of extra program pages available to this app.
+    #[serde(rename = "extra-program-pages", skip_serializing_if = "Option::is_none")]
+    pub extra_program_pages: Option<i32>,
     /// Represents a key-value store for use in an application.
     #[serde(rename = "global-state", skip_serializing_if = "Option::is_none")]
     pub global_state: Option<Vec<crate::models::TealKeyValue>>,
@@ -39,6 +42,7 @@ impl ApplicationParams {
             approval_program,
             clear_state_program,
             creator,
+            extra_program_pages: None,
             global_state: None,
             global_state_schema: None,
             local_state_schema: None,

@@ -11,24 +11,24 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct InlineResponse2002 {
+    #[serde(rename = "apps-local-states")]
+    pub apps_local_states: Vec<crate::models::ApplicationLocalState>,
     /// Round at which the results were computed.
     #[serde(rename = "current-round")]
     pub current_round: i32,
     /// Used for pagination, when making another request provide this token with the next parameter.
     #[serde(rename = "next-token", skip_serializing_if = "Option::is_none")]
     pub next_token: Option<String>,
-    #[serde(rename = "transactions")]
-    pub transactions: Vec<crate::models::Transaction>,
 }
 
 impl InlineResponse2002 {
-    pub fn new(current_round: i32, transactions: Vec<crate::models::Transaction>) -> InlineResponse2002 {
+    pub fn new(apps_local_states: Vec<crate::models::ApplicationLocalState>, current_round: i32) -> InlineResponse2002 {
         InlineResponse2002 {
+            apps_local_states,
             current_round,
             next_token: None,
-            transactions,
         }
     }
 }

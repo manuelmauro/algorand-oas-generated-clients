@@ -4,16 +4,20 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**abort_catchup**](PrivateApi.md#abort_catchup) | **delete** /v2/catchup/{catchpoint} | Aborts a catchpoint catchup.
-[**register_participation_keys**](PrivateApi.md#register_participation_keys) | **post** /v2/register-participation-keys/{address} | 
-[**shutdown_node**](PrivateApi.md#shutdown_node) | **post** /v2/shutdown | 
-[**start_catchup**](PrivateApi.md#start_catchup) | **post** /v2/catchup/{catchpoint} | Starts a catchpoint catchup.
+[**abort_catchup**](PrivateApi.md#abort_catchup) | **DELETE** /v2/catchup/{catchpoint} | Aborts a catchpoint catchup.
+[**add_participation_key**](PrivateApi.md#add_participation_key) | **POST** /v2/participation | Add a participation key to the node
+[**append_keys**](PrivateApi.md#append_keys) | **POST** /v2/participation/{participation-id} | Append state proof keys to a participation key
+[**delete_participation_key_by_id**](PrivateApi.md#delete_participation_key_by_id) | **DELETE** /v2/participation/{participation-id} | Delete a given participation key by ID
+[**get_participation_key_by_id**](PrivateApi.md#get_participation_key_by_id) | **GET** /v2/participation/{participation-id} | Get participation key info given a participation ID
+[**get_participation_keys**](PrivateApi.md#get_participation_keys) | **GET** /v2/participation | Return a list of participation keys
+[**shutdown_node**](PrivateApi.md#shutdown_node) | **POST** /v2/shutdown | 
+[**start_catchup**](PrivateApi.md#start_catchup) | **POST** /v2/catchup/{catchpoint} | Starts a catchpoint catchup.
 
 
 
 ## abort_catchup
 
-> crate::models::InlineResponse2004 abort_catchup(catchpoint)
+> crate::models::InlineResponse2006 abort_catchup(catchpoint)
 Aborts a catchpoint catchup.
 
 Given a catchpoint, it aborts catching up to this catchpoint
@@ -27,7 +31,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2004**](inline_response_200_4.md)
+[**crate::models::InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 
@@ -41,27 +45,139 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## register_participation_keys
+## add_participation_key
 
-> crate::models::InlineResponse2006 register_participation_keys(address, fee, key_dilution, round_last_valid, no_wait)
-
-
-Generate (or renew) and register participation keys on the node for a given account address.
+> crate::models::InlineResponse2008 add_participation_key(participationkey)
+Add a participation key to the node
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**address** | **String** | The `account-id` to update, or `all` to update all accounts. | [required] |
-**fee** | Option<**i32**> | The fee to use when submitting key registration transactions. Defaults to the suggested fee. |  |[default to 1000]
-**key_dilution** | Option<**i32**> | value to use for two-level participation key. |  |
-**round_last_valid** | Option<**i32**> | The last round for which the generated participation keys will be valid. |  |
-**no_wait** | Option<**bool**> | Don't wait for transaction to commit before returning response. |  |
+**participationkey** | **std::path::PathBuf** | The participation key to add to the node | [required] |
 
 ### Return type
 
-[**crate::models::InlineResponse2006**](inline_response_200_6.md)
+[**crate::models::InlineResponse2008**](inline_response_200_8.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/msgpack
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## append_keys
+
+> crate::models::ParticipationKey append_keys(participation_id, keymap)
+Append state proof keys to a participation key
+
+Given a participation ID, append state proof keys to a particular set of participation keys
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**participation_id** | **String** |  | [required] |
+**keymap** | **std::path::PathBuf** | The state proof keys to add to an existing participation ID | [required] |
+
+### Return type
+
+[**crate::models::ParticipationKey**](ParticipationKey.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/msgpack
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_participation_key_by_id
+
+> delete_participation_key_by_id(participation_id)
+Delete a given participation key by ID
+
+Delete a given participation key by ID
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**participation_id** | **String** |  | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_participation_key_by_id
+
+> crate::models::ParticipationKey get_participation_key_by_id(participation_id)
+Get participation key info given a participation ID
+
+Given a participation ID, return information about that participation key
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**participation_id** | **String** |  | [required] |
+
+### Return type
+
+[**crate::models::ParticipationKey**](ParticipationKey.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_participation_keys
+
+> Vec<crate::models::ParticipationKey> get_participation_keys()
+Return a list of participation keys
+
+Return a list of participation keys
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Vec<crate::models::ParticipationKey>**](ParticipationKey.md)
 
 ### Authorization
 
@@ -107,7 +223,7 @@ Name | Type | Description  | Required | Notes
 
 ## start_catchup
 
-> crate::models::InlineResponse2003 start_catchup(catchpoint)
+> crate::models::InlineResponse2005 start_catchup(catchpoint)
 Starts a catchpoint catchup.
 
 Given a catchpoint, it starts catching up to this catchpoint
@@ -121,7 +237,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2003**](inline_response_200_3.md)
+[**crate::models::InlineResponse2005**](inline_response_200_5.md)
 
 ### Authorization
 

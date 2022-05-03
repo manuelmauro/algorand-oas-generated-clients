@@ -11,20 +11,20 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct InlineResponse2008 {
+    #[serde(rename = "application", skip_serializing_if = "Option::is_none")]
+    pub application: Option<Box<crate::models::Application>>,
     /// Round at which the results were computed.
     #[serde(rename = "current-round")]
     pub current_round: i32,
-    #[serde(rename = "transaction")]
-    pub transaction: Box<crate::models::Transaction>,
 }
 
 impl InlineResponse2008 {
-    pub fn new(current_round: i32, transaction: crate::models::Transaction) -> InlineResponse2008 {
+    pub fn new(current_round: i32) -> InlineResponse2008 {
         InlineResponse2008 {
+            application: None,
             current_round,
-            transaction: Box::new(transaction),
         }
     }
 }

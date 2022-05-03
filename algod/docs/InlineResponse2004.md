@@ -4,7 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**catchup_message** | **String** | Catchup abort response string | 
+**hashtype** | **String** | The type of hash function used to create the proof, must be one of: * sumhash  * sha512_256 | 
+**idx** | **i32** | Index of the transaction in the block's payset. | 
+**proof** | **String** | Merkle proof of transaction membership. | 
+**stibhash** | **String** | Hash of SignedTxnInBlock for verifying proof. | 
+**treedepth** | **i32** | Represents the depth of the tree that is being proven, i.e. the number of edges from a leaf to the root. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

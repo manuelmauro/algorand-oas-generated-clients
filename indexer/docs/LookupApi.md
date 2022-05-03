@@ -4,23 +4,28 @@ All URIs are relative to *https://example.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**lookup_account_by_id**](LookupApi.md#lookup_account_by_id) | **get** /v2/accounts/{account-id} | 
-[**lookup_account_transactions**](LookupApi.md#lookup_account_transactions) | **get** /v2/accounts/{account-id}/transactions | 
-[**lookup_application_by_id**](LookupApi.md#lookup_application_by_id) | **get** /v2/applications/{application-id} | 
-[**lookup_asset_balances**](LookupApi.md#lookup_asset_balances) | **get** /v2/assets/{asset-id}/balances | 
-[**lookup_asset_by_id**](LookupApi.md#lookup_asset_by_id) | **get** /v2/assets/{asset-id} | 
-[**lookup_asset_transactions**](LookupApi.md#lookup_asset_transactions) | **get** /v2/assets/{asset-id}/transactions | 
-[**lookup_block**](LookupApi.md#lookup_block) | **get** /v2/blocks/{round-number} | 
-[**lookup_transaction**](LookupApi.md#lookup_transaction) | **get** /v2/transactions/{txid} | 
+[**lookup_account_app_local_states**](LookupApi.md#lookup_account_app_local_states) | **GET** /v2/accounts/{account-id}/apps-local-state | 
+[**lookup_account_assets**](LookupApi.md#lookup_account_assets) | **GET** /v2/accounts/{account-id}/assets | 
+[**lookup_account_by_id**](LookupApi.md#lookup_account_by_id) | **GET** /v2/accounts/{account-id} | 
+[**lookup_account_created_applications**](LookupApi.md#lookup_account_created_applications) | **GET** /v2/accounts/{account-id}/created-applications | 
+[**lookup_account_created_assets**](LookupApi.md#lookup_account_created_assets) | **GET** /v2/accounts/{account-id}/created-assets | 
+[**lookup_account_transactions**](LookupApi.md#lookup_account_transactions) | **GET** /v2/accounts/{account-id}/transactions | 
+[**lookup_application_by_id**](LookupApi.md#lookup_application_by_id) | **GET** /v2/applications/{application-id} | 
+[**lookup_application_logs_by_id**](LookupApi.md#lookup_application_logs_by_id) | **GET** /v2/applications/{application-id}/logs | 
+[**lookup_asset_balances**](LookupApi.md#lookup_asset_balances) | **GET** /v2/assets/{asset-id}/balances | 
+[**lookup_asset_by_id**](LookupApi.md#lookup_asset_by_id) | **GET** /v2/assets/{asset-id} | 
+[**lookup_asset_transactions**](LookupApi.md#lookup_asset_transactions) | **GET** /v2/assets/{asset-id}/transactions | 
+[**lookup_block**](LookupApi.md#lookup_block) | **GET** /v2/blocks/{round-number} | 
+[**lookup_transaction**](LookupApi.md#lookup_transaction) | **GET** /v2/transactions/{txid} | 
 
 
 
-## lookup_account_by_id
+## lookup_account_app_local_states
 
-> crate::models::InlineResponse2001 lookup_account_by_id(account_id, round, include_all)
+> crate::models::InlineResponse2002 lookup_account_app_local_states(account_id, application_id, include_all, limit, next)
 
 
-Lookup account information.
+Lookup an account's asset holdings, optionally for a specific ID.
 
 ### Parameters
 
@@ -28,53 +33,10 @@ Lookup account information.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **account_id** | **String** | account string | [required] |
-**round** | Option<**i32**> | Include results for the specified round. |  |
+**application_id** | Option<**i32**> | Application ID |  |
 **include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
-
-### Return type
-
-[**crate::models::InlineResponse2001**](inline_response_200_1.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## lookup_account_transactions
-
-> crate::models::InlineResponse2002 lookup_account_transactions(account_id, limit, next, note_prefix, tx_type, sig_type, txid, round, min_round, max_round, asset_id, before_time, after_time, currency_greater_than, currency_less_than, rekey_to)
-
-
-Lookup account transactions.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**account_id** | **String** | account string | [required] |
-**limit** | Option<**i32**> | Maximum number of results to return. |  |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
 **next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
-**note_prefix** | Option<**String**> | Specifies a prefix which must be contained in the note field. |  |
-**tx_type** | Option<**String**> |  |  |
-**sig_type** | Option<**String**> | SigType filters just results using the specified type of signature: * sig - Standard * msig - MultiSig * lsig - LogicSig |  |
-**txid** | Option<**String**> | Lookup the specific transaction by ID. |  |
-**round** | Option<**i32**> | Include results for the specified round. |  |
-**min_round** | Option<**i32**> | Include results at or after the specified min-round. |  |
-**max_round** | Option<**i32**> | Include results at or before the specified max-round. |  |
-**asset_id** | Option<**i32**> | Asset ID |  |
-**before_time** | Option<**String**> | Include results before the given time. Must be an RFC 3339 formatted string. |  |
-**after_time** | Option<**String**> | Include results after the given time. Must be an RFC 3339 formatted string. |  |
-**currency_greater_than** | Option<**i32**> | Results should have an amount greater than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used. |  |
-**currency_less_than** | Option<**i32**> | Results should have an amount less than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used. |  |
-**rekey_to** | Option<**bool**> | Include results which include the rekey-to field. |  |
 
 ### Return type
 
@@ -92,20 +54,90 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## lookup_application_by_id
+## lookup_account_assets
 
-> crate::models::InlineResponse2004 lookup_application_by_id(application_id, include_all)
+> crate::models::InlineResponse2003 lookup_account_assets(account_id, asset_id, include_all, limit, next)
 
 
-Lookup application.
+Lookup an account's asset holdings, optionally for a specific ID.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**application_id** | **i32** |  | [required] |
+**account_id** | **String** | account string | [required] |
+**asset_id** | Option<**i32**> | Asset ID |  |
 **include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
+**next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
+
+### Return type
+
+[**crate::models::InlineResponse2003**](inline_response_200_3.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## lookup_account_by_id
+
+> crate::models::InlineResponse2001 lookup_account_by_id(account_id, round, include_all, exclude)
+
+
+Lookup account information.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**account_id** | **String** | account string | [required] |
+**round** | Option<**i32**> | Include results for the specified round. |  |
+**include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
+**exclude** | Option<[**Vec<String>**](String.md)> | Exclude additional items such as asset holdings, application local data stored for this account, asset parameters created by this account, and application parameters created by this account. |  |
+
+### Return type
+
+[**crate::models::InlineResponse2001**](inline_response_200_1.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## lookup_account_created_applications
+
+> crate::models::InlineResponse2004 lookup_account_created_applications(account_id, application_id, include_all, limit, next)
+
+
+Lookup an account's created application parameters, optionally for a specific ID.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**account_id** | **String** | account string | [required] |
+**application_id** | Option<**i32**> | Application ID |  |
+**include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
+**next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
 
 ### Return type
 
@@ -123,29 +155,27 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## lookup_asset_balances
+## lookup_account_created_assets
 
-> crate::models::InlineResponse2007 lookup_asset_balances(asset_id, include_all, limit, next, round, currency_greater_than, currency_less_than)
+> crate::models::InlineResponse2005 lookup_account_created_assets(account_id, asset_id, include_all, limit, next)
 
 
-Lookup the list of accounts who hold this asset 
+Lookup an account's created asset parameters, optionally for a specific ID.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**asset_id** | **i32** |  | [required] |
+**account_id** | **String** | account string | [required] |
+**asset_id** | Option<**i32**> | Asset ID |  |
 **include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
-**limit** | Option<**i32**> | Maximum number of results to return. |  |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
 **next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
-**round** | Option<**i32**> | Include results for the specified round. |  |
-**currency_greater_than** | Option<**i32**> | Results should have an amount greater than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used. |  |
-**currency_less_than** | Option<**i32**> | Results should have an amount less than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used. |  |
 
 ### Return type
 
-[**crate::models::InlineResponse2007**](inline_response_200_7.md)
+[**crate::models::InlineResponse2005**](inline_response_200_5.md)
 
 ### Authorization
 
@@ -159,20 +189,34 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## lookup_asset_by_id
+## lookup_account_transactions
 
-> crate::models::InlineResponse2006 lookup_asset_by_id(asset_id, include_all)
+> crate::models::InlineResponse2006 lookup_account_transactions(account_id, limit, next, note_prefix, tx_type, sig_type, txid, round, min_round, max_round, asset_id, before_time, after_time, currency_greater_than, currency_less_than, rekey_to)
 
 
-Lookup asset information.
+Lookup account transactions. Transactions are returned newest to oldest.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**asset_id** | **i32** |  | [required] |
-**include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
+**account_id** | **String** | account string | [required] |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
+**next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
+**note_prefix** | Option<**String**> | Specifies a prefix which must be contained in the note field. |  |
+**tx_type** | Option<**String**> |  |  |
+**sig_type** | Option<**String**> | SigType filters just results using the specified type of signature: * sig - Standard * msig - MultiSig * lsig - LogicSig |  |
+**txid** | Option<**String**> | Lookup the specific transaction by ID. |  |
+**round** | Option<**i32**> | Include results for the specified round. |  |
+**min_round** | Option<**i32**> | Include results at or after the specified min-round. |  |
+**max_round** | Option<**i32**> | Include results at or before the specified max-round. |  |
+**asset_id** | Option<**i32**> | Asset ID |  |
+**before_time** | Option<**String**> | Include results before the given time. Must be an RFC 3339 formatted string. |  |
+**after_time** | Option<**String**> | Include results after the given time. Must be an RFC 3339 formatted string. |  |
+**currency_greater_than** | Option<**i32**> | Results should have an amount greater than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used. |  |
+**currency_less_than** | Option<**i32**> | Results should have an amount less than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used. |  |
+**rekey_to** | Option<**bool**> | Include results which include the rekey-to field. |  |
 
 ### Return type
 
@@ -190,12 +234,79 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## lookup_asset_transactions
+## lookup_application_by_id
 
-> crate::models::InlineResponse2002 lookup_asset_transactions(asset_id, limit, next, note_prefix, tx_type, sig_type, txid, round, min_round, max_round, before_time, after_time, currency_greater_than, currency_less_than, address, address_role, exclude_close_to, rekey_to)
+> crate::models::InlineResponse2008 lookup_application_by_id(application_id, include_all)
 
 
-Lookup transactions for an asset.
+Lookup application.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**application_id** | **i32** |  | [required] |
+**include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
+
+### Return type
+
+[**crate::models::InlineResponse2008**](inline_response_200_8.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## lookup_application_logs_by_id
+
+> crate::models::InlineResponse2009 lookup_application_logs_by_id(application_id, limit, next, txid, min_round, max_round, sender_address)
+
+
+Lookup application logs.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**application_id** | **i32** |  | [required] |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
+**next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
+**txid** | Option<**String**> | Lookup the specific transaction by ID. |  |
+**min_round** | Option<**i32**> | Include results at or after the specified min-round. |  |
+**max_round** | Option<**i32**> | Include results at or before the specified max-round. |  |
+**sender_address** | Option<**String**> | Only include transactions with this sender address. |  |
+
+### Return type
+
+[**crate::models::InlineResponse2009**](inline_response_200_9.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## lookup_asset_balances
+
+> crate::models::InlineResponse20012 lookup_asset_balances(asset_id, include_all, limit, next, currency_greater_than, currency_less_than)
+
+
+Lookup the list of accounts who hold this asset 
 
 ### Parameters
 
@@ -203,7 +314,73 @@ Lookup transactions for an asset.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **asset_id** | **i32** |  | [required] |
-**limit** | Option<**i32**> | Maximum number of results to return. |  |
+**include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
+**next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
+**currency_greater_than** | Option<**i32**> | Results should have an amount greater than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used. |  |
+**currency_less_than** | Option<**i32**> | Results should have an amount less than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used. |  |
+
+### Return type
+
+[**crate::models::InlineResponse20012**](inline_response_200_12.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## lookup_asset_by_id
+
+> crate::models::InlineResponse20011 lookup_asset_by_id(asset_id, include_all)
+
+
+Lookup asset information.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**asset_id** | **i32** |  | [required] |
+**include_all** | Option<**bool**> | Include all items including closed accounts, deleted applications, destroyed assets, opted-out asset holdings, and closed-out application localstates. |  |
+
+### Return type
+
+[**crate::models::InlineResponse20011**](inline_response_200_11.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## lookup_asset_transactions
+
+> crate::models::InlineResponse2006 lookup_asset_transactions(asset_id, limit, next, note_prefix, tx_type, sig_type, txid, round, min_round, max_round, before_time, after_time, currency_greater_than, currency_less_than, address, address_role, exclude_close_to, rekey_to)
+
+
+Lookup transactions for an asset. Transactions are returned oldest to newest.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**asset_id** | **i32** |  | [required] |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
 **next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
 **note_prefix** | Option<**String**> | Specifies a prefix which must be contained in the note field. |  |
 **tx_type** | Option<**String**> |  |  |
@@ -223,7 +400,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2002**](inline_response_200_2.md)
+[**crate::models::InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 
@@ -269,7 +446,7 @@ No authorization required
 
 ## lookup_transaction
 
-> crate::models::InlineResponse2008 lookup_transaction(txid)
+> crate::models::InlineResponse20015 lookup_transaction(txid)
 
 
 Lookup a single transaction.
@@ -283,7 +460,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2008**](inline_response_200_8.md)
+[**crate::models::InlineResponse20015**](inline_response_200_15.md)
 
 ### Authorization
 

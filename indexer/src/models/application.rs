@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Application {
     /// Round when this application was created.
     #[serde(rename = "created-at-round", skip_serializing_if = "Option::is_none")]

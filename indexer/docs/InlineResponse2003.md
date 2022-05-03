@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**applications** | [**Vec<crate::models::Application>**](Application.md) |  | 
+**assets** | [**Vec<crate::models::AssetHolding>**](AssetHolding.md) |  | 
 **current_round** | **i32** | Round at which the results were computed. | 
 **next_token** | Option<**String**> | Used for pagination, when making another request provide this token with the next parameter. | [optional]
 
