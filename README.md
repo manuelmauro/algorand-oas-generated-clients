@@ -1,8 +1,6 @@
-# algorand-oas-generated-v2-clients
+# Algorand OAS-Generated Clients
 
-Rust clients for Algorand's `algod` v2 and `indexer` v1. Generated with the following command:
-
-Generate `algod` client:
+`algod` client generated with:
 
 ```bash
 docker run --rm \
@@ -13,7 +11,7 @@ docker run --rm \
   --skip-validate-spec
 ```
 
-Generate `indexer` client:
+`indexer` client generated with:
 
 ```bash
 docker run --rm \
