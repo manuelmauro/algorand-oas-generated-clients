@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **app_call_messages** | Option<**Vec<String>**> |  | [optional]
 **app_call_trace** | Option<[**Vec<crate::models::DryrunState>**](DryrunState.md)> |  | [optional]
-**cost** | Option<**i32**> | Execution cost of app call transaction | [optional]
+**budget_added** | Option<**i32**> | Budget added during execution of app call transaction. | [optional]
+**budget_consumed** | Option<**i32**> | Budget consumed during execution of app call transaction. | [optional]
 **disassembly** | **Vec<String>** | Disassembled program line by line. | 
 **global_delta** | Option<[**Vec<crate::models::EvalDeltaKeyValue>**](EvalDeltaKeyValue.md)> | Application state delta. | [optional]
 **local_deltas** | Option<[**Vec<crate::models::AccountStateDelta>**](AccountStateDelta.md)> |  | [optional]

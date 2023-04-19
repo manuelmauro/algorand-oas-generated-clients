@@ -24,6 +24,8 @@ Name | Type | Description | Notes
 **status** | **String** | \\[onl\\] delegation status of the account's MicroAlgos * Offline - indicates that the associated account is delegated. *  Online  - indicates that the associated account used as part of the delegation pool. *   NotParticipating - indicates that the associated account is neither a delegator nor a delegate. | 
 **total_apps_opted_in** | **i32** | The count of all applications that have been opted in, equivalent to the count of application local data (AppLocalState objects) stored in this account. | 
 **total_assets_opted_in** | **i32** | The count of all assets that have been opted in, equivalent to the count of AssetHolding objects held by this account. | 
+**total_box_bytes** | Option<**i32**> | \\[tbxb\\] The total number of bytes used by this account's app's box keys and values. | [optional]
+**total_boxes** | Option<**i32**> | \\[tbx\\] The number of existing boxes created by this account's app. | [optional]
 **total_created_apps** | **i32** | The count of all apps (AppParams objects) created by this account. | 
 **total_created_assets** | **i32** | The count of all assets (AssetParams objects) created by this account. | 
 

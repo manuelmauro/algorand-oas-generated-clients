@@ -18,9 +18,12 @@ pub struct DryrunTxnResult {
     pub app_call_messages: Option<Vec<String>>,
     #[serde(rename = "app-call-trace", skip_serializing_if = "Option::is_none")]
     pub app_call_trace: Option<Vec<crate::models::DryrunState>>,
-    /// Execution cost of app call transaction
-    #[serde(rename = "cost", skip_serializing_if = "Option::is_none")]
-    pub cost: Option<i32>,
+    /// Budget added during execution of app call transaction.
+    #[serde(rename = "budget-added", skip_serializing_if = "Option::is_none")]
+    pub budget_added: Option<i32>,
+    /// Budget consumed during execution of app call transaction.
+    #[serde(rename = "budget-consumed", skip_serializing_if = "Option::is_none")]
+    pub budget_consumed: Option<i32>,
     /// Disassembled program line by line.
     #[serde(rename = "disassembly")]
     pub disassembly: Vec<String>,
@@ -46,7 +49,8 @@ impl DryrunTxnResult {
         DryrunTxnResult {
             app_call_messages: None,
             app_call_trace: None,
-            cost: None,
+            budget_added: None,
+            budget_consumed: None,
             disassembly,
             global_delta: None,
             local_deltas: None,

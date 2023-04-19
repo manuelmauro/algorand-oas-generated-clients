@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **confirmed_round** | Option<**i32**> | The round where this transaction was confirmed, if present. | [optional]
 **global_state_delta** | Option<[**Vec<crate::models::EvalDeltaKeyValue>**](EvalDeltaKeyValue.md)> | Application state delta. | [optional]
 **inner_txns** | Option<[**Vec<crate::models::PendingTransactionResponse>**](PendingTransactionResponse.md)> | Inner transactions produced by application execution. | [optional]
-**local_state_delta** | Option<[**Vec<crate::models::AccountStateDelta>**](AccountStateDelta.md)> | \\[ld\\] Local state key/value changes for the application being executed by this transaction. | [optional]
-**logs** | Option<**Vec<String>**> | \\[lg\\] Logs for the application being executed by this transaction. | [optional]
+**local_state_delta** | Option<[**Vec<crate::models::AccountStateDelta>**](AccountStateDelta.md)> | Local state key/value changes for the application being executed by this transaction. | [optional]
+**logs** | Option<**Vec<String>**> | Logs for the application being executed by this transaction. | [optional]
 **pool_error** | **String** | Indicates that the transaction was kicked out of this node's transaction pool (and specifies why that happened).  An empty string indicates the transaction wasn't kicked out of this node's txpool due to an error.  | 
 **receiver_rewards** | Option<**i32**> | Rewards in microalgos applied to the receiver account. | [optional]
 **sender_rewards** | Option<**i32**> | Rewards in microalgos applied to the sender account. | [optional]

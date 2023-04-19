@@ -107,7 +107,7 @@ pub enum StartCatchupError {
 
 
 /// Given a catchpoint, it aborts catching up to this catchpoint
-pub async fn abort_catchup(configuration: &configuration::Configuration, catchpoint: &str) -> Result<crate::models::InlineResponse2006, Error<AbortCatchupError>> {
+pub async fn abort_catchup(configuration: &configuration::Configuration, catchpoint: &str) -> Result<crate::models::AbortCatchup200Response, Error<AbortCatchupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -142,7 +142,7 @@ pub async fn abort_catchup(configuration: &configuration::Configuration, catchpo
     }
 }
 
-pub async fn add_participation_key(configuration: &configuration::Configuration, participationkey: std::path::PathBuf) -> Result<crate::models::InlineResponse2008, Error<AddParticipationKeyError>> {
+pub async fn add_participation_key(configuration: &configuration::Configuration, participationkey: std::path::PathBuf) -> Result<crate::models::AddParticipationKey200Response, Error<AddParticipationKeyError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -184,7 +184,7 @@ pub async fn append_keys(configuration: &configuration::Configuration, participa
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/participation/{participation_id}", local_var_configuration.base_path, participation_id=crate::apis::urlencode(participation_id));
+    let local_var_uri_str = format!("{}/v2/participation/{participation-id}", local_var_configuration.base_path, participation-id=crate::apis::urlencode(participation_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -221,7 +221,7 @@ pub async fn delete_participation_key_by_id(configuration: &configuration::Confi
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/participation/{participation_id}", local_var_configuration.base_path, participation_id=crate::apis::urlencode(participation_id));
+    let local_var_uri_str = format!("{}/v2/participation/{participation-id}", local_var_configuration.base_path, participation-id=crate::apis::urlencode(participation_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -257,7 +257,7 @@ pub async fn get_participation_key_by_id(configuration: &configuration::Configur
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/participation/{participation_id}", local_var_configuration.base_path, participation_id=crate::apis::urlencode(participation_id));
+    let local_var_uri_str = format!("{}/v2/participation/{participation-id}", local_var_configuration.base_path, participation-id=crate::apis::urlencode(participation_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -363,7 +363,7 @@ pub async fn shutdown_node(configuration: &configuration::Configuration, timeout
 }
 
 /// Given a catchpoint, it starts catching up to this catchpoint
-pub async fn start_catchup(configuration: &configuration::Configuration, catchpoint: &str) -> Result<crate::models::InlineResponse2005, Error<StartCatchupError>> {
+pub async fn start_catchup(configuration: &configuration::Configuration, catchpoint: &str) -> Result<crate::models::StartCatchup200Response, Error<StartCatchupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

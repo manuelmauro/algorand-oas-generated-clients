@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## abort_catchup
 
-> crate::models::InlineResponse2006 abort_catchup(catchpoint)
+> crate::models::AbortCatchup200Response abort_catchup(catchpoint)
 Aborts a catchpoint catchup.
 
 Given a catchpoint, it aborts catching up to this catchpoint
@@ -31,7 +31,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2006**](inline_response_200_6.md)
+[**crate::models::AbortCatchup200Response**](AbortCatchup_200_response.md)
 
 ### Authorization
 
@@ -47,7 +47,7 @@ Name | Type | Description  | Required | Notes
 
 ## add_participation_key
 
-> crate::models::InlineResponse2008 add_participation_key(participationkey)
+> crate::models::AddParticipationKey200Response add_participation_key(participationkey)
 Add a participation key to the node
 
 ### Parameters
@@ -59,7 +59,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2008**](inline_response_200_8.md)
+[**crate::models::AddParticipationKey200Response**](AddParticipationKey_200_response.md)
 
 ### Authorization
 
@@ -223,7 +223,7 @@ Name | Type | Description  | Required | Notes
 
 ## start_catchup
 
-> crate::models::InlineResponse2005 start_catchup(catchpoint)
+> crate::models::StartCatchup200Response start_catchup(catchpoint)
 Starts a catchpoint catchup.
 
 Given a catchpoint, it starts catching up to this catchpoint
@@ -237,7 +237,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2005**](inline_response_200_5.md)
+[**crate::models::StartCatchup200Response**](StartCatchup_200_response.md)
 
 ### Authorization
 

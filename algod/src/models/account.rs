@@ -72,6 +72,12 @@ pub struct Account {
     /// The count of all assets that have been opted in, equivalent to the count of AssetHolding objects held by this account.
     #[serde(rename = "total-assets-opted-in")]
     pub total_assets_opted_in: i32,
+    /// \\[tbxb\\] The total number of bytes used by this account's app's box keys and values.
+    #[serde(rename = "total-box-bytes", skip_serializing_if = "Option::is_none")]
+    pub total_box_bytes: Option<i32>,
+    /// \\[tbx\\] The number of existing boxes created by this account's app.
+    #[serde(rename = "total-boxes", skip_serializing_if = "Option::is_none")]
+    pub total_boxes: Option<i32>,
     /// The count of all apps (AppParams objects) created by this account.
     #[serde(rename = "total-created-apps")]
     pub total_created_apps: i32,
@@ -104,6 +110,8 @@ impl Account {
             status,
             total_apps_opted_in,
             total_assets_opted_in,
+            total_box_bytes: None,
+            total_boxes: None,
             total_created_apps,
             total_created_assets,
         }

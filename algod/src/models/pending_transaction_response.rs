@@ -38,10 +38,10 @@ pub struct PendingTransactionResponse {
     /// Inner transactions produced by application execution.
     #[serde(rename = "inner-txns", skip_serializing_if = "Option::is_none")]
     pub inner_txns: Option<Vec<crate::models::PendingTransactionResponse>>,
-    /// \\[ld\\] Local state key/value changes for the application being executed by this transaction.
+    /// Local state key/value changes for the application being executed by this transaction.
     #[serde(rename = "local-state-delta", skip_serializing_if = "Option::is_none")]
     pub local_state_delta: Option<Vec<crate::models::AccountStateDelta>>,
-    /// \\[lg\\] Logs for the application being executed by this transaction.
+    /// Logs for the application being executed by this transaction.
     #[serde(rename = "logs", skip_serializing_if = "Option::is_none")]
     pub logs: Option<Vec<String>>,
     /// Indicates that the transaction was kicked out of this node's transaction pool (and specifies why that happened).  An empty string indicates the transaction wasn't kicked out of this node's txpool due to an error. 
