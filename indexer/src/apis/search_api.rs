@@ -128,7 +128,7 @@ pub async fn search_for_application_boxes(configuration: &configuration::Configu
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/applications/{application-id}/boxes", local_var_configuration.base_path, application-id=application_id);
+    let local_var_uri_str = format!("{}/v2/applications/{application_id}/boxes", local_var_configuration.base_path, application_id=application_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = limit {

@@ -407,7 +407,7 @@ pub async fn account_application_information(configuration: &configuration::Conf
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/accounts/{address}/applications/{application-id}", local_var_configuration.base_path, address=crate::apis::urlencode(address), application-id=application_id);
+    let local_var_uri_str = format!("{}/v2/accounts/{address}/applications/{application_id}", local_var_configuration.base_path, address=crate::apis::urlencode(address), application_id=application_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = format {
@@ -446,7 +446,7 @@ pub async fn account_asset_information(configuration: &configuration::Configurat
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/accounts/{address}/assets/{asset-id}", local_var_configuration.base_path, address=crate::apis::urlencode(address), asset-id=asset_id);
+    let local_var_uri_str = format!("{}/v2/accounts/{address}/assets/{asset_id}", local_var_configuration.base_path, address=crate::apis::urlencode(address), asset_id=asset_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = format {
@@ -562,7 +562,7 @@ pub async fn get_application_box_by_name(configuration: &configuration::Configur
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/applications/{application-id}/box", local_var_configuration.base_path, application-id=application_id);
+    let local_var_uri_str = format!("{}/v2/applications/{application_id}/box", local_var_configuration.base_path, application_id=application_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     local_var_req_builder = local_var_req_builder.query(&[("name", &name.to_string())]);
@@ -599,7 +599,7 @@ pub async fn get_application_boxes(configuration: &configuration::Configuration,
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/applications/{application-id}/boxes", local_var_configuration.base_path, application-id=application_id);
+    let local_var_uri_str = format!("{}/v2/applications/{application_id}/boxes", local_var_configuration.base_path, application_id=application_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = max {
@@ -638,7 +638,7 @@ pub async fn get_application_by_id(configuration: &configuration::Configuration,
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/applications/{application-id}", local_var_configuration.base_path, application-id=application_id);
+    let local_var_uri_str = format!("{}/v2/applications/{application_id}", local_var_configuration.base_path, application_id=application_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -674,7 +674,7 @@ pub async fn get_asset_by_id(configuration: &configuration::Configuration, asset
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/assets/{asset-id}", local_var_configuration.base_path, asset-id=asset_id);
+    let local_var_uri_str = format!("{}/v2/assets/{asset_id}", local_var_configuration.base_path, asset_id=asset_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {

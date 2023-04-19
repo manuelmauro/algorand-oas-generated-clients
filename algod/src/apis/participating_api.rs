@@ -165,7 +165,7 @@ pub async fn append_keys(configuration: &configuration::Configuration, participa
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/participation/{participation-id}", local_var_configuration.base_path, participation-id=crate::apis::urlencode(participation_id));
+    let local_var_uri_str = format!("{}/v2/participation/{participation_id}", local_var_configuration.base_path, participation_id=crate::apis::urlencode(participation_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -202,7 +202,7 @@ pub async fn delete_participation_key_by_id(configuration: &configuration::Confi
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/participation/{participation-id}", local_var_configuration.base_path, participation-id=crate::apis::urlencode(participation_id));
+    let local_var_uri_str = format!("{}/v2/participation/{participation_id}", local_var_configuration.base_path, participation_id=crate::apis::urlencode(participation_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -238,7 +238,7 @@ pub async fn get_participation_key_by_id(configuration: &configuration::Configur
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/v2/participation/{participation-id}", local_var_configuration.base_path, participation-id=crate::apis::urlencode(participation_id));
+    let local_var_uri_str = format!("{}/v2/participation/{participation_id}", local_var_configuration.base_path, participation_id=crate::apis::urlencode(participation_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {

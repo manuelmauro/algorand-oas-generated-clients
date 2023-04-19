@@ -1,5 +1,7 @@
 # Algorand OAS-Generated Clients
 
+## Generate Clients
+
 `algod` client generated with:
 
 ```bash
@@ -21,3 +23,15 @@ docker run --rm \
   -o /local/indexer \
   --skip-validate-spec
 ```
+
+## Fix Clients
+
+VS Code regex
+
+```regex
+(format!.*)(a-id)(.*)(a-id)
+
+$1a_id$3a_id
+```
+
+for `a` in `[application, asset, participation, account, ]`
