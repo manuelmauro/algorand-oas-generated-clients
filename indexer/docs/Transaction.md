@@ -36,7 +36,8 @@ Name | Type | Description | Notes
 **sender** | **String** | \\[snd\\] Sender's address. | 
 **sender_rewards** | Option<**i32**> | \\[rs\\] rewards applied to sender account. | [optional]
 **signature** | Option<[**crate::models::TransactionSignature**](TransactionSignature.md)> |  | [optional]
-**tx_type** | **String** | \\[type\\] Indicates what type of transaction this is. Different types have different fields.  Valid types, and where their fields are stored: * \\[pay\\] payment-transaction * \\[keyreg\\] keyreg-transaction * \\[acfg\\] asset-config-transaction * \\[axfer\\] asset-transfer-transaction * \\[afrz\\] asset-freeze-transaction * \\[appl\\] application-transaction | 
+**state_proof_transaction** | Option<[**crate::models::TransactionStateProof**](TransactionStateProof.md)> |  | [optional]
+**tx_type** | **String** | \\[type\\] Indicates what type of transaction this is. Different types have different fields.  Valid types, and where their fields are stored: * \\[pay\\] payment-transaction * \\[keyreg\\] keyreg-transaction * \\[acfg\\] asset-config-transaction * \\[axfer\\] asset-transfer-transaction * \\[afrz\\] asset-freeze-transaction * \\[appl\\] application-transaction * \\[stpf\\] state-proof-transaction | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

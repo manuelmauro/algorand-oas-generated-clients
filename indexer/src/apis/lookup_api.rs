@@ -19,9 +19,9 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAccountAppLocalStatesError {
-    Status400(crate::models::InlineResponse400),
-    Status404(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status404(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -29,9 +29,9 @@ pub enum LookupAccountAppLocalStatesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAccountAssetsError {
-    Status400(crate::models::InlineResponse400),
-    Status404(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status404(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -39,9 +39,9 @@ pub enum LookupAccountAssetsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAccountByIdError {
-    Status400(crate::models::InlineResponse400),
-    Status404(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status404(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -49,9 +49,9 @@ pub enum LookupAccountByIdError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAccountCreatedApplicationsError {
-    Status400(crate::models::InlineResponse400),
-    Status404(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status404(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -59,9 +59,9 @@ pub enum LookupAccountCreatedApplicationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAccountCreatedAssetsError {
-    Status400(crate::models::InlineResponse400),
-    Status404(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status404(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -69,8 +69,18 @@ pub enum LookupAccountCreatedAssetsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAccountTransactionsError {
-    Status400(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`lookup_application_box_by_id_and_name`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LookupApplicationBoxByIdAndNameError {
+    Status400(crate::models::SearchForAccounts400Response),
+    Status404(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -78,8 +88,8 @@ pub enum LookupAccountTransactionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupApplicationByIdError {
-    Status404(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status404(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -94,8 +104,8 @@ pub enum LookupApplicationLogsByIdError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAssetBalancesError {
-    Status400(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -103,9 +113,9 @@ pub enum LookupAssetBalancesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAssetByIdError {
-    Status400(crate::models::InlineResponse400),
-    Status404(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status404(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -113,8 +123,8 @@ pub enum LookupAssetByIdError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupAssetTransactionsError {
-    Status400(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -122,8 +132,8 @@ pub enum LookupAssetTransactionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupBlockError {
-    Status404(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status404(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -131,15 +141,15 @@ pub enum LookupBlockError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LookupTransactionError {
-    Status400(crate::models::InlineResponse400),
-    Status404(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status404(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Lookup an account's asset holdings, optionally for a specific ID.
-pub async fn lookup_account_app_local_states(configuration: &configuration::Configuration, account_id: &str, application_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::InlineResponse2002, Error<LookupAccountAppLocalStatesError>> {
+pub async fn lookup_account_app_local_states(configuration: &configuration::Configuration, account_id: &str, application_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::LookupAccountAppLocalStates200Response, Error<LookupAccountAppLocalStatesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -179,7 +189,7 @@ pub async fn lookup_account_app_local_states(configuration: &configuration::Conf
 }
 
 /// Lookup an account's asset holdings, optionally for a specific ID.
-pub async fn lookup_account_assets(configuration: &configuration::Configuration, account_id: &str, asset_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::InlineResponse2003, Error<LookupAccountAssetsError>> {
+pub async fn lookup_account_assets(configuration: &configuration::Configuration, account_id: &str, asset_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::LookupAccountAssets200Response, Error<LookupAccountAssetsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -219,7 +229,7 @@ pub async fn lookup_account_assets(configuration: &configuration::Configuration,
 }
 
 /// Lookup account information.
-pub async fn lookup_account_by_id(configuration: &configuration::Configuration, account_id: &str, round: Option<i32>, include_all: Option<bool>, exclude: Option<Vec<String>>) -> Result<crate::models::InlineResponse2001, Error<LookupAccountByIdError>> {
+pub async fn lookup_account_by_id(configuration: &configuration::Configuration, account_id: &str, round: Option<i32>, include_all: Option<bool>, exclude: Option<Vec<String>>) -> Result<crate::models::LookupAccountById200Response, Error<LookupAccountByIdError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -259,7 +269,7 @@ pub async fn lookup_account_by_id(configuration: &configuration::Configuration, 
 }
 
 /// Lookup an account's created application parameters, optionally for a specific ID.
-pub async fn lookup_account_created_applications(configuration: &configuration::Configuration, account_id: &str, application_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::InlineResponse2004, Error<LookupAccountCreatedApplicationsError>> {
+pub async fn lookup_account_created_applications(configuration: &configuration::Configuration, account_id: &str, application_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::LookupAccountCreatedApplications200Response, Error<LookupAccountCreatedApplicationsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -299,7 +309,7 @@ pub async fn lookup_account_created_applications(configuration: &configuration::
 }
 
 /// Lookup an account's created asset parameters, optionally for a specific ID.
-pub async fn lookup_account_created_assets(configuration: &configuration::Configuration, account_id: &str, asset_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::InlineResponse2005, Error<LookupAccountCreatedAssetsError>> {
+pub async fn lookup_account_created_assets(configuration: &configuration::Configuration, account_id: &str, asset_id: Option<i32>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::LookupAccountCreatedAssets200Response, Error<LookupAccountCreatedAssetsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -339,7 +349,7 @@ pub async fn lookup_account_created_assets(configuration: &configuration::Config
 }
 
 /// Lookup account transactions. Transactions are returned newest to oldest.
-pub async fn lookup_account_transactions(configuration: &configuration::Configuration, account_id: &str, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, asset_id: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, rekey_to: Option<bool>) -> Result<crate::models::InlineResponse2006, Error<LookupAccountTransactionsError>> {
+pub async fn lookup_account_transactions(configuration: &configuration::Configuration, account_id: &str, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, asset_id: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, rekey_to: Option<bool>) -> Result<crate::models::LookupAccountTransactions200Response, Error<LookupAccountTransactionsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -411,8 +421,37 @@ pub async fn lookup_account_transactions(configuration: &configuration::Configur
     }
 }
 
+/// Given an application ID and box name, returns base64 encoded box name and value. Box names must be in the goal app call arg form 'encoding:value'. For ints, use the form 'int:1234'. For raw bytes, encode base 64 and use 'b64' prefix as in 'b64:A=='. For printable strings, use the form 'str:hello'. For addresses, use the form 'addr:XYZ...'.
+pub async fn lookup_application_box_by_id_and_name(configuration: &configuration::Configuration, application_id: i32, name: &str) -> Result<crate::models::Box, Error<LookupApplicationBoxByIdAndNameError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/applications/{application-id}/box", local_var_configuration.base_path, application-id=application_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    local_var_req_builder = local_var_req_builder.query(&[("name", &name.to_string())]);
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<LookupApplicationBoxByIdAndNameError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Lookup application.
-pub async fn lookup_application_by_id(configuration: &configuration::Configuration, application_id: i32, include_all: Option<bool>) -> Result<crate::models::InlineResponse2008, Error<LookupApplicationByIdError>> {
+pub async fn lookup_application_by_id(configuration: &configuration::Configuration, application_id: i32, include_all: Option<bool>) -> Result<crate::models::LookupApplicationById200Response, Error<LookupApplicationByIdError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -443,7 +482,7 @@ pub async fn lookup_application_by_id(configuration: &configuration::Configurati
 }
 
 /// Lookup application logs.
-pub async fn lookup_application_logs_by_id(configuration: &configuration::Configuration, application_id: i32, limit: Option<i32>, next: Option<&str>, txid: Option<&str>, min_round: Option<i32>, max_round: Option<i32>, sender_address: Option<&str>) -> Result<crate::models::InlineResponse2009, Error<LookupApplicationLogsByIdError>> {
+pub async fn lookup_application_logs_by_id(configuration: &configuration::Configuration, application_id: i32, limit: Option<i32>, next: Option<&str>, txid: Option<&str>, min_round: Option<i32>, max_round: Option<i32>, sender_address: Option<&str>) -> Result<crate::models::LookupApplicationLogsById200Response, Error<LookupApplicationLogsByIdError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -489,7 +528,7 @@ pub async fn lookup_application_logs_by_id(configuration: &configuration::Config
 }
 
 /// Lookup the list of accounts who hold this asset 
-pub async fn lookup_asset_balances(configuration: &configuration::Configuration, asset_id: i32, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>) -> Result<crate::models::InlineResponse20012, Error<LookupAssetBalancesError>> {
+pub async fn lookup_asset_balances(configuration: &configuration::Configuration, asset_id: i32, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>) -> Result<crate::models::LookupAssetBalances200Response, Error<LookupAssetBalancesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -532,7 +571,7 @@ pub async fn lookup_asset_balances(configuration: &configuration::Configuration,
 }
 
 /// Lookup asset information.
-pub async fn lookup_asset_by_id(configuration: &configuration::Configuration, asset_id: i32, include_all: Option<bool>) -> Result<crate::models::InlineResponse20011, Error<LookupAssetByIdError>> {
+pub async fn lookup_asset_by_id(configuration: &configuration::Configuration, asset_id: i32, include_all: Option<bool>) -> Result<crate::models::LookupAssetById200Response, Error<LookupAssetByIdError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -563,7 +602,7 @@ pub async fn lookup_asset_by_id(configuration: &configuration::Configuration, as
 }
 
 /// Lookup transactions for an asset. Transactions are returned oldest to newest.
-pub async fn lookup_asset_transactions(configuration: &configuration::Configuration, asset_id: i32, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, address: Option<&str>, address_role: Option<&str>, exclude_close_to: Option<bool>, rekey_to: Option<bool>) -> Result<crate::models::InlineResponse2006, Error<LookupAssetTransactionsError>> {
+pub async fn lookup_asset_transactions(configuration: &configuration::Configuration, asset_id: i32, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, address: Option<&str>, address_role: Option<&str>, exclude_close_to: Option<bool>, rekey_to: Option<bool>) -> Result<crate::models::LookupAccountTransactions200Response, Error<LookupAssetTransactionsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -642,7 +681,7 @@ pub async fn lookup_asset_transactions(configuration: &configuration::Configurat
 }
 
 /// Lookup block.
-pub async fn lookup_block(configuration: &configuration::Configuration, round_number: i32) -> Result<crate::models::Block, Error<LookupBlockError>> {
+pub async fn lookup_block(configuration: &configuration::Configuration, round_number: i32, header_only: Option<bool>) -> Result<crate::models::Block, Error<LookupBlockError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -650,6 +689,9 @@ pub async fn lookup_block(configuration: &configuration::Configuration, round_nu
     let local_var_uri_str = format!("{}/v2/blocks/{round-number}", local_var_configuration.base_path, round-number=round_number);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
+    if let Some(ref local_var_str) = header_only {
+        local_var_req_builder = local_var_req_builder.query(&[("header-only", &local_var_str.to_string())]);
+    }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
@@ -670,7 +712,7 @@ pub async fn lookup_block(configuration: &configuration::Configuration, round_nu
 }
 
 /// Lookup a single transaction.
-pub async fn lookup_transaction(configuration: &configuration::Configuration, txid: &str) -> Result<crate::models::InlineResponse20015, Error<LookupTransactionError>> {
+pub async fn lookup_transaction(configuration: &configuration::Configuration, txid: &str) -> Result<crate::models::LookupTransaction200Response, Error<LookupTransactionError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

@@ -19,8 +19,18 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchForAccountsError {
-    Status400(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`search_for_application_boxes`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SearchForApplicationBoxesError {
+    Status400(crate::models::SearchForAccounts400Response),
+    Status404(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -28,7 +38,7 @@ pub enum SearchForAccountsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchForApplicationsError {
-    Status500(crate::models::InlineResponse400),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -36,8 +46,8 @@ pub enum SearchForApplicationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchForAssetsError {
-    Status400(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -45,14 +55,14 @@ pub enum SearchForAssetsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchForTransactionsError {
-    Status400(crate::models::InlineResponse400),
-    Status500(crate::models::InlineResponse400),
+    Status400(crate::models::SearchForAccounts400Response),
+    Status500(crate::models::SearchForAccounts400Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Search for accounts.
-pub async fn search_for_accounts(configuration: &configuration::Configuration, asset_id: Option<i32>, limit: Option<i32>, next: Option<&str>, currency_greater_than: Option<i32>, include_all: Option<bool>, exclude: Option<Vec<String>>, currency_less_than: Option<i32>, auth_addr: Option<&str>, round: Option<i32>, application_id: Option<i32>) -> Result<crate::models::InlineResponse200, Error<SearchForAccountsError>> {
+pub async fn search_for_accounts(configuration: &configuration::Configuration, asset_id: Option<i32>, limit: Option<i32>, next: Option<&str>, currency_greater_than: Option<i32>, include_all: Option<bool>, exclude: Option<Vec<String>>, currency_less_than: Option<i32>, auth_addr: Option<&str>, round: Option<i32>, application_id: Option<i32>) -> Result<crate::models::SearchForAccounts200Response, Error<SearchForAccountsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -112,8 +122,42 @@ pub async fn search_for_accounts(configuration: &configuration::Configuration, a
     }
 }
 
+/// Given an application ID, returns the box names of that application sorted lexicographically.
+pub async fn search_for_application_boxes(configuration: &configuration::Configuration, application_id: i32, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::SearchForApplicationBoxes200Response, Error<SearchForApplicationBoxesError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/applications/{application-id}/boxes", local_var_configuration.base_path, application-id=application_id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = limit {
+        local_var_req_builder = local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = next {
+        local_var_req_builder = local_var_req_builder.query(&[("next", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<SearchForApplicationBoxesError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Search for applications
-pub async fn search_for_applications(configuration: &configuration::Configuration, application_id: Option<i32>, creator: Option<&str>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::InlineResponse2004, Error<SearchForApplicationsError>> {
+pub async fn search_for_applications(configuration: &configuration::Configuration, application_id: Option<i32>, creator: Option<&str>, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>) -> Result<crate::models::LookupAccountCreatedApplications200Response, Error<SearchForApplicationsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -156,7 +200,7 @@ pub async fn search_for_applications(configuration: &configuration::Configuratio
 }
 
 /// Search for assets.
-pub async fn search_for_assets(configuration: &configuration::Configuration, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>, creator: Option<&str>, name: Option<&str>, unit: Option<&str>, asset_id: Option<i32>) -> Result<crate::models::InlineResponse2005, Error<SearchForAssetsError>> {
+pub async fn search_for_assets(configuration: &configuration::Configuration, include_all: Option<bool>, limit: Option<i32>, next: Option<&str>, creator: Option<&str>, name: Option<&str>, unit: Option<&str>, asset_id: Option<i32>) -> Result<crate::models::LookupAccountCreatedAssets200Response, Error<SearchForAssetsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -205,7 +249,7 @@ pub async fn search_for_assets(configuration: &configuration::Configuration, inc
 }
 
 /// Search for transactions. Transactions are returned oldest to newest unless the address parameter is used, in which case results are returned newest to oldest.
-pub async fn search_for_transactions(configuration: &configuration::Configuration, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, asset_id: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, address: Option<&str>, address_role: Option<&str>, exclude_close_to: Option<bool>, rekey_to: Option<bool>, application_id: Option<i32>) -> Result<crate::models::InlineResponse2006, Error<SearchForTransactionsError>> {
+pub async fn search_for_transactions(configuration: &configuration::Configuration, limit: Option<i32>, next: Option<&str>, note_prefix: Option<&str>, tx_type: Option<&str>, sig_type: Option<&str>, txid: Option<&str>, round: Option<i32>, min_round: Option<i32>, max_round: Option<i32>, asset_id: Option<i32>, before_time: Option<String>, after_time: Option<String>, currency_greater_than: Option<i32>, currency_less_than: Option<i32>, address: Option<&str>, address_role: Option<&str>, exclude_close_to: Option<bool>, rekey_to: Option<bool>, application_id: Option<i32>) -> Result<crate::models::LookupAccountTransactions200Response, Error<SearchForTransactionsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

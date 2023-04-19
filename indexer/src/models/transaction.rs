@@ -103,7 +103,9 @@ pub struct Transaction {
     pub sender_rewards: Option<i32>,
     #[serde(rename = "signature", skip_serializing_if = "Option::is_none")]
     pub signature: Option<Box<crate::models::TransactionSignature>>,
-    /// \\[type\\] Indicates what type of transaction this is. Different types have different fields.  Valid types, and where their fields are stored: * \\[pay\\] payment-transaction * \\[keyreg\\] keyreg-transaction * \\[acfg\\] asset-config-transaction * \\[axfer\\] asset-transfer-transaction * \\[afrz\\] asset-freeze-transaction * \\[appl\\] application-transaction
+    #[serde(rename = "state-proof-transaction", skip_serializing_if = "Option::is_none")]
+    pub state_proof_transaction: Option<Box<crate::models::TransactionStateProof>>,
+    /// \\[type\\] Indicates what type of transaction this is. Different types have different fields.  Valid types, and where their fields are stored: * \\[pay\\] payment-transaction * \\[keyreg\\] keyreg-transaction * \\[acfg\\] asset-config-transaction * \\[axfer\\] asset-transfer-transaction * \\[afrz\\] asset-freeze-transaction * \\[appl\\] application-transaction * \\[stpf\\] state-proof-transaction
     #[serde(rename = "tx-type")]
     pub tx_type: TxType,
 }
@@ -144,12 +146,13 @@ impl Transaction {
             sender,
             sender_rewards: None,
             signature: None,
+            state_proof_transaction: None,
             tx_type,
         }
     }
 }
 
-/// \\[type\\] Indicates what type of transaction this is. Different types have different fields.  Valid types, and where their fields are stored: * \\[pay\\] payment-transaction * \\[keyreg\\] keyreg-transaction * \\[acfg\\] asset-config-transaction * \\[axfer\\] asset-transfer-transaction * \\[afrz\\] asset-freeze-transaction * \\[appl\\] application-transaction
+/// \\[type\\] Indicates what type of transaction this is. Different types have different fields.  Valid types, and where their fields are stored: * \\[pay\\] payment-transaction * \\[keyreg\\] keyreg-transaction * \\[acfg\\] asset-config-transaction * \\[axfer\\] asset-transfer-transaction * \\[afrz\\] asset-freeze-transaction * \\[appl\\] application-transaction * \\[stpf\\] state-proof-transaction
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum TxType {
     #[serde(rename = "pay")]
@@ -164,6 +167,8 @@ pub enum TxType {
     Afrz,
     #[serde(rename = "appl")]
     Appl,
+    #[serde(rename = "stpf")]
+    Stpf,
 }
 
 impl Default for TxType {

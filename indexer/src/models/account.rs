@@ -78,6 +78,12 @@ pub struct Account {
     /// The count of all assets that have been opted in, equivalent to the count of AssetHolding objects held by this account.
     #[serde(rename = "total-assets-opted-in")]
     pub total_assets_opted_in: i32,
+    /// For app-accounts only. The total number of bytes allocated for the keys and values of boxes which belong to the associated application.
+    #[serde(rename = "total-box-bytes")]
+    pub total_box_bytes: i32,
+    /// For app-accounts only. The total number of boxes which belong to the associated application.
+    #[serde(rename = "total-boxes")]
+    pub total_boxes: i32,
     /// The count of all apps (AppParams objects) created by this account.
     #[serde(rename = "total-created-apps")]
     pub total_created_apps: i32,
@@ -88,7 +94,7 @@ pub struct Account {
 
 impl Account {
     /// Account information at a given round.  Definition: data/basics/userBalance.go : AccountData 
-    pub fn new(address: String, amount: i32, amount_without_pending_rewards: i32, pending_rewards: i32, rewards: i32, round: i32, status: String, total_apps_opted_in: i32, total_assets_opted_in: i32, total_created_apps: i32, total_created_assets: i32) -> Account {
+    pub fn new(address: String, amount: i32, amount_without_pending_rewards: i32, pending_rewards: i32, rewards: i32, round: i32, status: String, total_apps_opted_in: i32, total_assets_opted_in: i32, total_box_bytes: i32, total_boxes: i32, total_created_apps: i32, total_created_assets: i32) -> Account {
         Account {
             address,
             amount,
@@ -112,6 +118,8 @@ impl Account {
             status,
             total_apps_opted_in,
             total_assets_opted_in,
+            total_box_bytes,
+            total_boxes,
             total_created_apps,
             total_created_assets,
         }

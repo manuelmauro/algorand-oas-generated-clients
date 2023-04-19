@@ -33,6 +33,7 @@ Class | Method | HTTP request | Description
 *LookupApi* | [**lookup_account_created_applications**](docs/LookupApi.md#lookup_account_created_applications) | **GET** /v2/accounts/{account-id}/created-applications | 
 *LookupApi* | [**lookup_account_created_assets**](docs/LookupApi.md#lookup_account_created_assets) | **GET** /v2/accounts/{account-id}/created-assets | 
 *LookupApi* | [**lookup_account_transactions**](docs/LookupApi.md#lookup_account_transactions) | **GET** /v2/accounts/{account-id}/transactions | 
+*LookupApi* | [**lookup_application_box_by_id_and_name**](docs/LookupApi.md#lookup_application_box_by_id_and_name) | **GET** /v2/applications/{application-id}/box | Get box information for a given application.
 *LookupApi* | [**lookup_application_by_id**](docs/LookupApi.md#lookup_application_by_id) | **GET** /v2/applications/{application-id} | 
 *LookupApi* | [**lookup_application_logs_by_id**](docs/LookupApi.md#lookup_application_logs_by_id) | **GET** /v2/applications/{application-id}/logs | 
 *LookupApi* | [**lookup_asset_balances**](docs/LookupApi.md#lookup_asset_balances) | **GET** /v2/assets/{asset-id}/balances | 
@@ -41,6 +42,7 @@ Class | Method | HTTP request | Description
 *LookupApi* | [**lookup_block**](docs/LookupApi.md#lookup_block) | **GET** /v2/blocks/{round-number} | 
 *LookupApi* | [**lookup_transaction**](docs/LookupApi.md#lookup_transaction) | **GET** /v2/transactions/{txid} | 
 *SearchApi* | [**search_for_accounts**](docs/SearchApi.md#search_for_accounts) | **GET** /v2/accounts | 
+*SearchApi* | [**search_for_application_boxes**](docs/SearchApi.md#search_for_application_boxes) | **GET** /v2/applications/{application-id}/boxes | Get box names for a given application.
 *SearchApi* | [**search_for_applications**](docs/SearchApi.md#search_for_applications) | **GET** /v2/applications | 
 *SearchApi* | [**search_for_assets**](docs/SearchApi.md#search_for_assets) | **GET** /v2/assets | 
 *SearchApi* | [**search_for_transactions**](docs/SearchApi.md#search_for_transactions) | **GET** /v2/transactions | 
@@ -63,24 +65,39 @@ Class | Method | HTTP request | Description
  - [BlockRewards](docs/BlockRewards.md)
  - [BlockUpgradeState](docs/BlockUpgradeState.md)
  - [BlockUpgradeVote](docs/BlockUpgradeVote.md)
+ - [Box](docs/Box.md)
+ - [BoxDescriptor](docs/BoxDescriptor.md)
  - [EvalDelta](docs/EvalDelta.md)
  - [EvalDeltaKeyValue](docs/EvalDeltaKeyValue.md)
+ - [HashFactory](docs/HashFactory.md)
+ - [Hashtype](docs/Hashtype.md)
  - [HealthCheck](docs/HealthCheck.md)
- - [InlineResponse200](docs/InlineResponse200.md)
- - [InlineResponse2001](docs/InlineResponse2001.md)
- - [InlineResponse20011](docs/InlineResponse20011.md)
- - [InlineResponse20012](docs/InlineResponse20012.md)
- - [InlineResponse20015](docs/InlineResponse20015.md)
- - [InlineResponse2002](docs/InlineResponse2002.md)
- - [InlineResponse2003](docs/InlineResponse2003.md)
- - [InlineResponse2004](docs/InlineResponse2004.md)
- - [InlineResponse2005](docs/InlineResponse2005.md)
- - [InlineResponse2006](docs/InlineResponse2006.md)
- - [InlineResponse2008](docs/InlineResponse2008.md)
- - [InlineResponse2009](docs/InlineResponse2009.md)
- - [InlineResponse400](docs/InlineResponse400.md)
+ - [IndexerStateProofMessage](docs/IndexerStateProofMessage.md)
+ - [LookupAccountAppLocalStates200Response](docs/LookupAccountAppLocalStates200Response.md)
+ - [LookupAccountAssets200Response](docs/LookupAccountAssets200Response.md)
+ - [LookupAccountById200Response](docs/LookupAccountById200Response.md)
+ - [LookupAccountCreatedApplications200Response](docs/LookupAccountCreatedApplications200Response.md)
+ - [LookupAccountCreatedAssets200Response](docs/LookupAccountCreatedAssets200Response.md)
+ - [LookupAccountTransactions200Response](docs/LookupAccountTransactions200Response.md)
+ - [LookupApplicationById200Response](docs/LookupApplicationById200Response.md)
+ - [LookupApplicationLogsById200Response](docs/LookupApplicationLogsById200Response.md)
+ - [LookupAssetBalances200Response](docs/LookupAssetBalances200Response.md)
+ - [LookupAssetById200Response](docs/LookupAssetById200Response.md)
+ - [LookupTransaction200Response](docs/LookupTransaction200Response.md)
+ - [MerkleArrayProof](docs/MerkleArrayProof.md)
  - [MiniAssetHolding](docs/MiniAssetHolding.md)
  - [OnCompletion](docs/OnCompletion.md)
+ - [ParticipationUpdates](docs/ParticipationUpdates.md)
+ - [SearchForAccounts200Response](docs/SearchForAccounts200Response.md)
+ - [SearchForAccounts400Response](docs/SearchForAccounts400Response.md)
+ - [SearchForApplicationBoxes200Response](docs/SearchForApplicationBoxes200Response.md)
+ - [StateProofFields](docs/StateProofFields.md)
+ - [StateProofParticipant](docs/StateProofParticipant.md)
+ - [StateProofReveal](docs/StateProofReveal.md)
+ - [StateProofSigSlot](docs/StateProofSigSlot.md)
+ - [StateProofSignature](docs/StateProofSignature.md)
+ - [StateProofTracking](docs/StateProofTracking.md)
+ - [StateProofVerifier](docs/StateProofVerifier.md)
  - [StateSchema](docs/StateSchema.md)
  - [TealKeyValue](docs/TealKeyValue.md)
  - [TealValue](docs/TealValue.md)
@@ -95,6 +112,7 @@ Class | Method | HTTP request | Description
  - [TransactionSignatureLogicsig](docs/TransactionSignatureLogicsig.md)
  - [TransactionSignatureMultisig](docs/TransactionSignatureMultisig.md)
  - [TransactionSignatureMultisigSubsignature](docs/TransactionSignatureMultisigSubsignature.md)
+ - [TransactionStateProof](docs/TransactionStateProof.md)
 
 
 To get access to the crate's generated documentation, use:

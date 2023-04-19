@@ -19,7 +19,7 @@ pub struct TealValue {
     pub bytes: String,
     /// \\[tt\\] value type. Value `1` refers to **bytes**, value `2` refers to **uint**
     #[serde(rename = "type")]
-    pub _type: i32,
+    pub r#type: i32,
     /// \\[ui\\] uint value.
     #[serde(rename = "uint")]
     pub uint: i32,
@@ -27,10 +27,10 @@ pub struct TealValue {
 
 impl TealValue {
     /// Represents a TEAL value.
-    pub fn new(bytes: String, _type: i32, uint: i32) -> TealValue {
+    pub fn new(bytes: String, r#type: i32, uint: i32) -> TealValue {
         TealValue {
             bytes,
-            _type,
+            r#type,
             uint,
         }
     }

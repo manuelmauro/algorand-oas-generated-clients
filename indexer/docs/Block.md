@@ -6,13 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **genesis_hash** | **String** | \\[gh\\] hash to which this block belongs. | 
 **genesis_id** | **String** | \\[gen\\] ID to which this block belongs. | 
+**participation_updates** | Option<[**crate::models::ParticipationUpdates**](ParticipationUpdates.md)> |  | [optional]
 **previous_block_hash** | **String** | \\[prev\\] Previous block hash. | 
 **rewards** | Option<[**crate::models::BlockRewards**](BlockRewards.md)> |  | [optional]
 **round** | **i32** | \\[rnd\\] Current round on which this block was appended to the chain. | 
 **seed** | **String** | \\[seed\\] Sortition seed. | 
+**state_proof_tracking** | Option<[**Vec<crate::models::StateProofTracking>**](StateProofTracking.md)> | Tracks the status of state proofs. | [optional]
 **timestamp** | **i32** | \\[ts\\] Block creation timestamp in seconds since eposh | 
 **transactions** | Option<[**Vec<crate::models::Transaction>**](Transaction.md)> | \\[txns\\] list of transactions corresponding to a given round. | [optional]
 **transactions_root** | **String** | \\[txn\\] TransactionsRoot authenticates the set of transactions appearing in the block. More specifically, it's the root of a merkle tree whose leaves are the block's Txids, in lexicographic order. For the empty block, it's 0. Note that the TxnRoot does not authenticate the signatures on the transactions, only the transactions themselves. Two blocks with the same transactions but in a different order and with different signatures will have the same TxnRoot. | 
+**transactions_root_sha256** | **String** | \\[txn256\\] TransactionsRootSHA256 is an auxiliary TransactionRoot, built using a vector commitment instead of a merkle tree, and SHA256 hash function instead of the default SHA512_256. This commitment can be used on environments where only the SHA256 function exists. | 
 **txn_counter** | Option<**i32**> | \\[tc\\] TxnCounter counts the number of transactions committed in the ledger, from the time at which support for this feature was introduced.  Specifically, TxnCounter is the number of the next transaction that will be committed after this block.  It is 0 when no transactions have ever been committed (since TxnCounter started being supported). | [optional]
 **upgrade_state** | Option<[**crate::models::BlockUpgradeState**](BlockUpgradeState.md)> |  | [optional]
 **upgrade_vote** | Option<[**crate::models::BlockUpgradeVote**](BlockUpgradeVote.md)> |  | [optional]

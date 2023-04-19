@@ -5,6 +5,7 @@ All URIs are relative to *https://example.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**search_for_accounts**](SearchApi.md#search_for_accounts) | **GET** /v2/accounts | 
+[**search_for_application_boxes**](SearchApi.md#search_for_application_boxes) | **GET** /v2/applications/{application-id}/boxes | Get box names for a given application.
 [**search_for_applications**](SearchApi.md#search_for_applications) | **GET** /v2/applications | 
 [**search_for_assets**](SearchApi.md#search_for_assets) | **GET** /v2/assets | 
 [**search_for_transactions**](SearchApi.md#search_for_transactions) | **GET** /v2/transactions | 
@@ -13,7 +14,7 @@ Method | HTTP request | Description
 
 ## search_for_accounts
 
-> crate::models::InlineResponse200 search_for_accounts(asset_id, limit, next, currency_greater_than, include_all, exclude, currency_less_than, auth_addr, round, application_id)
+> crate::models::SearchForAccounts200Response search_for_accounts(asset_id, limit, next, currency_greater_than, include_all, exclude, currency_less_than, auth_addr, round, application_id)
 
 
 Search for accounts.
@@ -31,12 +32,44 @@ Name | Type | Description  | Required | Notes
 **exclude** | Option<[**Vec<String>**](String.md)> | Exclude additional items such as asset holdings, application local data stored for this account, asset parameters created by this account, and application parameters created by this account. |  |
 **currency_less_than** | Option<**i32**> | Results should have an amount less than this value. MicroAlgos are the default currency unless an asset-id is provided, in which case the asset will be used. |  |
 **auth_addr** | Option<**String**> | Include accounts configured to use this spending key. |  |
-**round** | Option<**i32**> | Include results for the specified round. For performance reasons, this parameter may be disabled on some configurations. |  |
+**round** | Option<**i32**> | Include results for the specified round. For performance reasons, this parameter may be disabled on some configurations. Using application-id or asset-id filters will return both creator and opt-in accounts. Filtering by include-all will return creator and opt-in accounts for deleted assets and accounts. Non-opt-in managers are not included in the results when asset-id is used. |  |
 **application_id** | Option<**i32**> | Application ID |  |
 
 ### Return type
 
-[**crate::models::InlineResponse200**](inline_response_200.md)
+[**crate::models::SearchForAccounts200Response**](searchForAccounts_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## search_for_application_boxes
+
+> crate::models::SearchForApplicationBoxes200Response search_for_application_boxes(application_id, limit, next)
+Get box names for a given application.
+
+Given an application ID, returns the box names of that application sorted lexicographically.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**application_id** | **i32** |  | [required] |
+**limit** | Option<**i32**> | Maximum number of results to return. There could be additional pages even if the limit is not reached. |  |
+**next** | Option<**String**> | The next page of results. Use the next token provided by the previous results. |  |
+
+### Return type
+
+[**crate::models::SearchForApplicationBoxes200Response**](searchForApplicationBoxes_200_response.md)
 
 ### Authorization
 
@@ -52,7 +85,7 @@ No authorization required
 
 ## search_for_applications
 
-> crate::models::InlineResponse2004 search_for_applications(application_id, creator, include_all, limit, next)
+> crate::models::LookupAccountCreatedApplications200Response search_for_applications(application_id, creator, include_all, limit, next)
 
 
 Search for applications
@@ -70,7 +103,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2004**](inline_response_200_4.md)
+[**crate::models::LookupAccountCreatedApplications200Response**](lookupAccountCreatedApplications_200_response.md)
 
 ### Authorization
 
@@ -86,7 +119,7 @@ No authorization required
 
 ## search_for_assets
 
-> crate::models::InlineResponse2005 search_for_assets(include_all, limit, next, creator, name, unit, asset_id)
+> crate::models::LookupAccountCreatedAssets200Response search_for_assets(include_all, limit, next, creator, name, unit, asset_id)
 
 
 Search for assets.
@@ -106,7 +139,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2005**](inline_response_200_5.md)
+[**crate::models::LookupAccountCreatedAssets200Response**](lookupAccountCreatedAssets_200_response.md)
 
 ### Authorization
 
@@ -122,7 +155,7 @@ No authorization required
 
 ## search_for_transactions
 
-> crate::models::InlineResponse2006 search_for_transactions(limit, next, note_prefix, tx_type, sig_type, txid, round, min_round, max_round, asset_id, before_time, after_time, currency_greater_than, currency_less_than, address, address_role, exclude_close_to, rekey_to, application_id)
+> crate::models::LookupAccountTransactions200Response search_for_transactions(limit, next, note_prefix, tx_type, sig_type, txid, round, min_round, max_round, asset_id, before_time, after_time, currency_greater_than, currency_less_than, address, address_role, exclude_close_to, rekey_to, application_id)
 
 
 Search for transactions. Transactions are returned oldest to newest unless the address parameter is used, in which case results are returned newest to oldest.
@@ -154,7 +187,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2006**](inline_response_200_6.md)
+[**crate::models::LookupAccountTransactions200Response**](lookupAccountTransactions_200_response.md)
 
 ### Authorization
 
